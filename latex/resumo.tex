@@ -8,13 +8,20 @@ aonde está instalada uma grelha de vários outros dispositivos de \nname{Bluetoot
 apelidados de \foreign{Beacons}. Os \foreign{Beacons} são estacionários,
 é conhecida a sua localização, e estão ligados a um computador central. O
 \foreign{Rover} é transportado por uma pessoa e, por isso, assume-se que tem
-liberdade de movimentos total.
-
-O objectivo deste estágio era construir uma plataforma que dote a grelha de
+liberdade de movimentos total. O objectivo deste estágio era construir uma plataforma que dote a grelha de
 \foreign{Beacons} com a capacidade de localizar o \foreign{Rover} quando este se
 encontra dentro da grelha.
 
-\textcolor[rgb]{1,0,0}{RESUMIR O RESTO DO CONTEÚDO DO DOCUMENTO.}
+Foram estudados os mecanismos de localização, a tecnologia \nname{Bluetooth} e as de possibilidades que esta
+tecnologia tem para ser usada como base de um  sistema de localização. Chega-se à conclusão que terá que ser usado
+um mecanismo de trilateração com base numa medida proprietária dos dispositivos da \nname{Cambridge Silicon Radio},
+chamada RSSI\_ACL, que indica a força de sinal com que um dispositivo comunica com outro. Chega-se à conclusão que
+a medição do RSSI\_ACL entre um par de dispositivos não é suficiente. Elabora-se um método com base em observações
+empiricas para ultrapassar esta limitação. É desenhado e implementado um prótótipo.
+
+Chega-se à conclusão que o método elaborado não produz resultados satisfatórios por desconsiderar alguma caracteristicas
+da medida RSSI\_ACL. É proposta uma alternativa que se baseia em regressões exponenciais calculadas durante a execução.
+
 
 %$\ll$Máximo 1 página ou 350 palavras.
 %\vspace*{\baselineskip}
@@ -26,7 +33,11 @@ encontra dentro da grelha.
 %O resumo pode ter, por exemplo, as seguintes 3 componentes:
 %\begin{itemize}
 %\item 1 parágrafo inicial de introdução do contexto geral do trabalho.
-%\item Resumo dos aspectos mais importantes do trabalho descrito no presente %%relatório, que por sua vez documenta o trabalho mais importante realizado %%durante o estágio. Deve mencionar tudo aquilo que foi feito, por isso deve %%concentrar-se no que é realmente importante e que deve ajudar o leitor a %%decidir se deve ou não consultar o restante relatório.
+%\item Resumo dos aspectos mais importantes do trabalho descrito no presente
+%%relatório, que por sua vez documenta o trabalho mais importante realizado
+%%durante o estágio. Deve mencionar tudo aquilo que foi feito, por isso deve
+%%concentrar-se no que é realmente importante e que deve ajudar o leitor a
+%%decidir se deve ou não consultar o restante relatório.
 %\item 1 parágrafo final com as conclusões do trabalho realizado.
 %\end{itemize}
 %$\gg$

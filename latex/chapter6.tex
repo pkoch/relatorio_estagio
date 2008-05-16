@@ -3,7 +3,7 @@
 \chapter{Implementação do Protótipo}
 \label{ch:implementacao}
 
-Neste capítulo serão explicados detalhes da implementação. Nomeadamente, a escolha de tecnologias e dificuldades no uso das mesmas, as partes que não foram implementadas, o funcionamento de certas classes menos convencionais e como alterar o método de localização usado.
+Neste capítulo serão explicados detalhes da implementação, nomeadamente, a escolha de tecnologias e dificuldades no uso das mesmas, as partes que não foram implementadas, o funcionamento de certas classes menos convencionais e como alterar o método de localização usado.
 
 \section{Escolha de tecnologias}
 
@@ -11,7 +11,7 @@ Neste capítulo serão explicados detalhes da implementação. Nomeadamente, a escol
 \subsection{Beacon}
 
 
-Antes de sequer testar as medidas como foi feito no capítulo \ref{ch:investigacao}, foi preciso criar um ambiente que permitisse acesso ao HCI.
+Antes sequer de se testar as medidas como foi feito no capítulo \ref{ch:investigacao}, foi preciso criar um ambiente que permitisse acesso ao HCI.
 
 A primeira tentativa de criar este ambiente foi em \emph{Windows Mobile 4}. Criar um ambiente neste Sistema Operativo (ou SO) era particularmente útil devido à disponibilidade de equipamentos com este SO. No entanto, a biblioteca disponível e respectiva documentação são relativamente complexas. Por isso, não se conseguiu criar o ambiente necessário.
 
@@ -57,7 +57,7 @@ No fim, a ideia que passou foi a de que, para controlo preciso do HCI, é preferí
 
 A única parte do sistema que não foi implementada foi parte da comunicação Central --- Beacon. No protótipo, os dispositivos que o Beacon procurava estavam descritos em código, ao invés de lhe serem comunicados pelo central.
 
-De resto, foi implementada a totalidade da solução
+De resto, foi implementada a totalidade da solução.
 
 \section{Implementação de classes}
 
@@ -69,7 +69,7 @@ Nesta secção é explicado o funcionamento de duas classes que, embora não suficie
 
 O objectivo desta classe é representar uma figura geométrica presente numa área de duas dimensões através de um \foreign{array} bidimensional, como se fosse um quadriculado. A área que contém a figura é mapeada num \foreign{array} bidimensional de booleanos. Se a posição do \foreign{array} correspondente a uma parte da área mapeada contiver o valor ``verdadeiro'', então essa parte da área pertence à figura geométrica representada.
 
-Um objecto desta classe tem os valores mínimos e máximos de cada eixo da área representada, o factor de escala para cada eixo e o array de booleanos.
+Um objecto desta classe tem os valores mínimos e máximos de cada eixo da área representada, o factor de escala para cada eixo e o \foreign{array} de booleanos.
 
 \subsection{Protocol Talker e String Machine}
 \label{ch:implementacao:machine}
@@ -140,7 +140,7 @@ Esqueleto da implementação da função de calculo da regressão em C\# 2.0.
 
 Em segundo lugar, seria alterado o método \cname{GetRadius} para:
 \begin{enumerate}
-\item Passar por todos os objectos \cname{Ruler} e recolher a distância que cada um representa e a medição ai guardada,
+\item Passar por todos os objectos \cname{Ruler} e recolher a distância que cada um representa e a medição aí guardada,
 \item Manipular a estrutura dessa informação para estar de acordo com o dicionário que a classe de regressão requer,
 \item Dar ao método da classe (ou do objecto da classe, conforme a implementação) o dicionário para efectuar a regressão, e
 \item Guardar a função resultante da regressão.
@@ -149,7 +149,7 @@ Em segundo lugar, seria alterado o método \cname{GetRadius} para:
 Posto isto, era só chamar o método resultante com o RSSI\_ACL do Donut para ter uma distância.
 
 \section{Resumo e Conclusões}
-Foram apresentadas as principais decisões da implementação da solução proposta. Por uma questão de conveniência, a única parte da solução que não foi implementada foi a comunicação do Central para os Beacons dos endereços dos Beacons e Rovers que deveriam ser monitorados. Do lado do Beacon, toda a implementação foi feita em ambiente \nname{Linux}, com recuso à \foreign{framework} \nname{Bluez}. Do lado do Cenral, optou-se por usar .NET, devido ao vasto apoio técnico e social disponível. Foram explicadas as dificuldades de adaptação ao uso de \nname{Bluez}, como foram implementadas as classe \cname{ProtocolTalker} e \cname{BinaryMap} e foi explicado como alternar de método de localização.
+Foram apresentadas as principais decisões da implementação da solução proposta. Por uma questão de conveniência, a única parte da solução que não foi implementada foi a comunicação do Central para os Beacons dos endereços dos Beacons e Rovers que deveriam ser monitorados. Do lado do Beacon, toda a implementação foi feita em ambiente \nname{Linux}, com recuso à \foreign{framework} \nname{Bluez}. Do lado do Central, optou-se por usar .NET, devido ao vasto apoio técnico e social disponível. Foi explicado como foram implementadas as classe \cname{ProtocolTalker}, as dificuldades de adaptação ao uso de \nname{Bluez} e \cname{BinaryMap} e com alternar de método de localização.
 
 %$\ll$30 páginas sugeridas
 %\vspace*{\baselineskip}

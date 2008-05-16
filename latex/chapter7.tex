@@ -12,11 +12,22 @@ Nesta secção será retratado o funcionamento típico do protótipo desenvolvido. Co
 \subsection{Instalação e Arranque}
 \label{ch:resultados:instalacao}
 
-O primeiro aspecto a ter em mente é o sítio que cada Beacon terá. Estes devem estar dispostos de modo a que todas as posições a monitorizar estejam cobertas pelo alcance de, pelo menos, três Beacons.
+O primeiro aspecto a ter em mente é o sítio que cada Beacon terá. Estes devem estar dispostos de modo a que todas as posições a monitorizar estejam cobertas pelo alcance de, pelo menos, três Beacons. Assumindo que queremos monitorar a presença de Rovers numa sala inteira, na figura~\ref{fig:BadSetup} temos um exemplo de um mau posicionamento, na figura~\ref{fig:GoodSetup} o de um bom posicionamento.
 
-Inserir figura de mau posicionamento
 
-Inserir figura de bom posicionamento.
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{GoodSetup.png}
+  \caption{Instalação bem planeada se se quiser cobrir a totalidade duma sala.}
+  \label{fig:GoodSetup}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{BadSetup.png}
+  \caption{Instalação mal planeada se se quiser cobrir a totalidade duma sala.}
+  \label{fig:BadSetup}
+\end{figure}
 
 A próxima preocupação é como dispor os Beacons em si, tanto o dispositivo BT como o anfitrião do mesmo\footnote{ Como explicado em 5.1, um Beacon como um todo é constituído pelo dispositivo BT e pela máquina onde este está hospedado.}. O dispositivo BT deve estar no sítio planeado no passo anterior. É preciso aprovisionar sítios para os anfitriões e, talvez, os cabos necessários para ligar os dispositivos BT aos anfitriões (caso a ligação seja USB ou a antena do dispositivo seja externa).
 
@@ -31,13 +42,20 @@ Nesta altura, o sistema está pronto a localizar um Rover que entre na sua área d
 \subsection{Funcionamento}
 
 
-Se ligarmos um dispositivo BT reconhecido como Rover, eventualmente, os Beacons ligam-se a ele. Eventualmente porque um Beacon só pode tentar ligar-se a um Rover de cada vez e cada tentativa de ligação demora aproximadamente 5 segundos.
+Se ligarmos um dispositivo BT reconhecido como Rover, eventualmente, os Beacons ligam-se a ele. ``Eventualmente'' porque um Beacon só pode tentar ligar-se a um Rover de cada vez e cada tentativa de ligação demora aproximadamente 5 segundos.
 
 No melhor dos casos, os Beacons demoram 5 segundos a reconhecer a presença do Rover. No pior dos casos, demoram o número de Rovers registados multiplicado por cinco, em segundos. O valor máximo de espera por resposta de um Rover pode ser controlado. Com base em observações empíricas, abaixo dos 3 segundos, as ligações nem sempre se concretizam e acima de 5 segundos não temos aumento de conectividade numa área de 8 metros quadrados.
 
 À medida que as ligações são efectuadas, retiradas medições do RSSI\_ACL e comunicado o seu valor ao Central, a interface gráfica vai mostrando as deduções feitas pelo Central. Quando três anéis se intersectam, é marcado na interface o centro geométrico da área de intersecção.
 
-Inserir Printscreen das cenas em funcionamento.
+Na figura~\ref{fig:Demo} temos uma imagem do \cname{Visualizer} em funcionamento. As bolas vermelha, verde e azul são Beacons. A bola azul claro é a estimativa actual da posição de um Rover. Cada anel verde é uma estimativa de um Beacon sobre um Rover. A área pintada a roxo é onde se espera que o Rover possa estar. Neste exemplo em específico, temos só uma ligação entre o Rover e o Beacon vermelho.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{Demo.png}
+  \caption{Exemplo de funcionamento do \cname{Visualizer} em funcionamento.}
+  \label{fig:Demo}
+\end{figure}
 
 \section{Comportamento e avaliação das estimativas}
 
@@ -58,7 +76,7 @@ O actual método de dedução da localização não considera a referida natureza loga
 Em relação à comunicação com o HCI, o estagiário considera que já houve demasiados enganos e mal entendidos no uso da framework. Tendo em conta que se adquiriu bastante experiência na interacção com o HCI, apostar em não usar nenhuma abstracção resultará num controlo preciso. Há só que considerar que a carga de trabalho aumenta bastante. 
 
 \section{Resumo e Conclusões}
-Alem de explicado o processo típico de instalação e funcionamento do protótipo desenvolvido, neste capítulo conclui-se que o método explicado na secção~\ref{ch:investigacao:relacao} produz resultados, mas muito pouco satisfatórios. O sistema é capaz, em situações muito especificas de, de facto, deduzir a posição de um Rover. É proposto que seja usado um sistema que efectua regressão exponencial, actualizada constantemente durante a execução.
+Além de explicado o processo típico de instalação e funcionamento do protótipo desenvolvido, neste capítulo conclui-se que o método explicado na secção~\ref{ch:investigacao:relacao} produz resultados, mas muito pouco satisfatórios. O sistema é capaz, em situações muito especificas de, de facto, deduzir a posição de um Rover. É proposto que seja usado um sistema que efectua regressão exponencial, actualizada constantemente durante a execução.
 
 %$\ll$5 páginas sugeridas
 %\vspace*{\baselineskip}
