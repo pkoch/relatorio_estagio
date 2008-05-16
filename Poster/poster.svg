@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1488.189"
+   height="2104.7244"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   sodipodi:docbase="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster"
+   sodipodi:docname="poster.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       id="filter5283">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.0236753"
+         id="feGaussianBlur5285" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="483.49461"
+     inkscape:cy="225.48044"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     width="1488.189px"
+     height="2104.7244px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1440"
+     inkscape:window-height="843"
+     inkscape:window-x="0"
+     inkscape:window-y="23" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2160"
+       transform="matrix(9.5470551,0,0,9.5470551,-1750.4301,-1319.378)"
+       style="font-size:11.52187729px"><flowRegion
+         id="flowRegion2162"><rect
+           id="rect2164"
+           width="153.15536"
+           height="27.649124"
+           x="185.71428"
+           y="144.72437"
+           style="font-size:11.52187729px" /></flowRegion><flowPara
+         id="flowPara2166"
+         style="font-size:11.52187729px;font-weight:bold;text-align:center;text-anchor:middle;font-family:Trebuchet MS">Framework de Localização</flowPara><flowPara
+         id="flowPara2168"
+         style="font-size:11.52187729px;font-weight:bold;text-align:center;text-anchor:middle;font-family:Trebuchet MS">Passiva por Bluetooth</flowPara></flowRoot>    <rect
+       style="opacity:0.82222224;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.28955746;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter5283)"
+       id="rect2186"
+       width="474.8035"
+       height="328.31232"
+       x="12.5"
+       y="10.383048"
+       rx="0"
+       ry="0"
+       transform="matrix(3.1128521,0,0,6.3796678,-33.809127,-61.137569)" />
+    <g
+       id="g5367"
+       transform="matrix(3.2089615,0,0,2.5439833,627.90051,383.47429)">
+      <g
+         id="g5369">
+        <g
+           id="g2317"
+           transform="translate(7.62547e-2,-2.940826)">
+          <rect
+             id="rect2305"
+             style="opacity:1;fill:#002c60;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.87800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline"
+             y="4.308197"
+             x="-0.076254703"
+             ry="39.734612"
+             rx="28.35264"
+             height="93.265259"
+             width="68.643234" />
+          <text
+             xml:space="preserve"
+             id="text2307"
+             style="font-size:12px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Sans"
+             y="22.282118"
+             x="67.178391"
+             sodipodi:linespacing="100%"><tspan
+               id="tspan2248"
+               y="17"
+               x="71.5">R</tspan></text>
+          <path
+             id="path2311"
+             style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+             d="M 13.851366,35.396614 L 18.328096,30.919884 L 31.509586,43.603964 L 31.509586,13.261664 L 54.639366,36.142744 L 39.468216,51.562594 L 55.136786,67.231164 L 31.509586,89.366114 L 31.509586,59.272524 L 18.825506,72.205304 L 13.602656,67.231164 L 30.266046,51.313884 L 13.851366,35.396614 z " />
+          <path
+             id="path2313"
+             style="fill:#002c60;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+             d="M 37.975976,27.935394 L 37.975976,43.852664 L 45.685906,36.391444 L 37.975976,27.935394 z " />
+          <path
+             id="path2315"
+             style="fill:#002c60;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+             d="M 37.727266,59.521234 L 38.224686,73.697554 L 45.934616,66.982454 L 37.727266,59.521234 z " />
+        </g>
+      </g>
+      <path
+         id="path2250"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:2.5px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         transform="matrix(0.467417,0,0,0.467417,72.39272,30.81836)"
+         d="M 21.372805,-50.800174 C 23.908144,-42.693187 19.401087,-34.064093 11.299002,-31.513132 C 3.1969169,-28.962171 -5.440849,-33.452587 -8.0074224,-41.549739 C -10.573996,-49.646892 -6.1002385,-58.293297 1.9919518,-60.875474 C 10.084142,-63.45765 18.739155,-59.000568 21.336925,-50.91337" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5407"
+       style="font-size:100px;font-family:Trebuchet MS"
+       transform="translate(646.92893,155.57359)"><flowRegion
+         id="flowRegion5409"><rect
+           id="rect5411"
+           width="744"
+           height="40"
+           x="42"
+           y="1856.7244"
+           style="font-size:100px;font-family:Trebuchet MS" /></flowRegion><flowPara
+         id="flowPara5413"
+         style="font-size:30px;font-family:Trebuchet MS">Licenciatura em Engenharia Informática e Computação</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5423"
+       transform="translate(702.30002,36.07739)"><flowRegion
+         id="flowRegion5425"><rect
+           id="rect5427"
+           width="738"
+           height="42"
+           x="42"
+           y="1920.7244" /></flowRegion><flowPara
+         id="flowPara5429"
+         style="font-size:30px;font-family:Trebuchet MS">Faculdade de Engenharia da Universidade do Porto</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5443"
+       transform="translate(1081.2258,-185.90743)"><flowRegion
+         id="flowRegion5445"><rect
+           id="rect5447"
+           width="318"
+           height="34"
+           x="42"
+           y="1920.7244" /></flowRegion><flowPara
+         id="flowPara5449"
+         style="font-size:30px">Ano lectivo de 2006/07</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5451"
+       style="font-size:100px"
+       transform="translate(1057.6272,-66.41123)"><flowRegion
+         id="flowRegion5453"><rect
+           id="rect5455"
+           width="366"
+           height="38"
+           x="42"
+           y="1856.7244"
+           style="font-size:100px" /></flowRegion><flowPara
+         id="flowPara5457"
+         style="font-size:30px;font-family:Trebuchet MS">Paulo Jorge Duarte Köch</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5459"
+       transform="translate(771.82151,-74.91502)"><flowRegion
+         id="flowRegion5461"><rect
+           id="rect5463"
+           width="628"
+           height="38"
+           x="42"
+           y="1920.7244" /></flowRegion><flowPara
+         id="flowPara5465"
+         style="font-size:30px;font-family:Trebuchet MS">Orientador da FEUP: Prof. João Correia Lopes</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot5467"
+       transform="translate(733.06174,-19.41882)"><flowRegion
+         id="flowRegion5469"><rect
+           id="rect5471"
+           width="672"
+           height="38"
+           x="42"
+           y="1920.7244" /></flowRegion><flowPara
+         id="flowPara5473"
+         style="font-size:30px;font-family:Trebuchet MS">Orientador da Novabase: Eng. João Vasco Ranito</flowPara></flowRoot>    <image
+       y="1603.798"
+       x="947.2395"
+       id="image5482"
+       height="122"
+       width="500"
+       sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\logo_novabase1.jpg"
+       xlink:href="logo_novabase1.jpg" />
+    <image
+       y="1550.4875"
+       x="58.916985"
+       id="image2267"
+       height="499.47098"
+       width="583.68793"
+       sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\feup.tif"
+       xlink:href="feup.tif" />
+    <g
+       id="g5974"
+       transform="translate(-49.33075,29.21604)">
+      <flowRoot
+         transform="translate(984.44141,-353.49153)"
+         style="font-size:110px"
+         id="flowRoot5327"
+         xml:space="preserve"><flowRegion
+           id="flowRegion5329"><rect
+             style="font-size:110px"
+             y="888.72437"
+             x="106"
+             height="112"
+             width="292"
+             id="rect5331" /></flowRegion><flowPara
+           style="font-size:75px;font-style:italic"
+           id="flowPara5333">BlueZ</flowPara></flowRoot>      <image
+         xlink:href="linuxlogo+penguin.jpg"
+         sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\linuxlogo+penguin.jpg"
+         width="382.84595"
+         height="163.26494"
+         id="image5957"
+         x="999.67151"
+         y="353.7341" />
+    </g>
+    <g
+       id="g5970"
+       transform="translate(-118.38478,16.180779)">
+      <image
+         xlink:href="Microsoft .NET logo color.png"
+         sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\Microsoft .NET logo color.png"
+         width="310.20242"
+         height="199.09842"
+         id="image5947"
+         x="380.73419"
+         y="340.64578" />
+      <image
+         xlink:href="nhibernate_logo_a.png"
+         sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\nhibernate_logo_a.png"
+         width="478.7518"
+         height="132.8831"
+         id="image5967"
+         x="212.18481"
+         y="505.2753" />
+    </g>
+    <image
+       y="658.72437"
+       x="70.094482"
+       id="image2246"
+       height="900"
+       width="1348"
+       sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\fifthave_plan_horz.png"
+       xlink:href="fifthave_plan_horz.png" />
+    <path
+       style="opacity:0.82222224;fill:#0000ff;fill-opacity:0.49803922;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 1035.8103,955.82988 C 938.78963,955.82988 860.0482,1035.4977 860.0482,1133.6598 C 860.0482,1231.8219 938.78963,1311.4897 1035.8103,1311.4897 C 1132.831,1311.4897 1211.5724,1231.8219 1211.5724,1133.6598 C 1211.5724,1035.4977 1132.831,955.82988 1035.8103,955.82988 z M 1035.8103,1029.717 C 1092.5196,1029.717 1138.5445,1076.2833 1138.5445,1133.6598 C 1138.5445,1191.0362 1092.5196,1237.6026 1035.8103,1237.6026 C 979.10104,1237.6026 933.07612,1191.0362 933.07612,1133.6598 C 933.07612,1076.2833 979.10104,1029.717 1035.8103,1029.717 z "
+       id="path2262" />
+    <path
+       style="opacity:0.82222224;fill:#00ff00;fill-opacity:0.49803922;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 917.82461,1212.6126 C 834.43732,1212.6126 766.76068,1280.2892 766.76068,1363.6765 C 766.76068,1447.0638 834.43732,1514.7404 917.82461,1514.7404 C 1001.2119,1514.7404 1068.8886,1447.0638 1068.8886,1363.6765 C 1068.8886,1280.2892 1001.2119,1212.6126 917.82461,1212.6126 z M 917.82461,1275.3786 C 966.56507,1275.3786 1006.1225,1314.936 1006.1225,1363.6765 C 1006.1225,1412.4169 966.56507,1451.9744 917.82461,1451.9744 C 869.08415,1451.9744 829.52668,1412.4169 829.52668,1363.6765 C 829.52668,1314.936 869.08415,1275.3786 917.82461,1275.3786 z "
+       id="path2264" />
+    <path
+       style="opacity:0.82222224;fill:#ff0000;fill-opacity:0.49803922;stroke:none;stroke-width:10;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 724.07735,877.44397 C 567.30935,877.44397 440.07735,1004.676 440.07735,1161.444 C 440.07735,1318.212 567.30935,1445.444 724.07735,1445.444 C 880.84535,1445.444 1008.0773,1318.212 1008.0773,1161.444 C 1008.0773,1004.676 880.84535,877.44397 724.07735,877.44397 z M 724.07735,995.44397 C 815.70935,995.44397 890.07735,1069.812 890.07735,1161.444 C 890.07735,1253.076 815.70935,1327.444 724.07735,1327.444 C 632.44535,1327.444 558.07735,1253.076 558.07735,1161.444 C 558.07735,1069.812 632.44535,995.44397 724.07735,995.44397 z "
+       id="path2257" />
+    <image
+       y="1224.9097"
+       x="921.34644"
+       id="image7126"
+       height="55.723114"
+       width="39.625324"
+       sodipodi:absref="C:\Documents and Settings\nb15080\Desktop\Estágio\Relatório\Poster\iphone.png"
+       xlink:href="iphone.png" />
+  </g>
+</svg>
