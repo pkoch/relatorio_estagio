@@ -1,0 +1,77 @@
+%-----------------------------------------------------
+% Template para criação de relatórios da LEIC
+% aas,jlopes,jmc AT fe.up.pt,  Fri May 19 09:53:17 2006
+%-----------------------------------------------------
+
+%% packages
+\usepackage[portuges]{babel}       % português
+\usepackage{graphicx}              % images .png or .pdf w/ pdflatex OR .eps w/ latex
+%\usepackage[T1]{fontenc}           % PS fonts
+\usepackage[latin1]{inputenc}      % 8 bits 
+%\usepackage{lastpage}              % to have lastpage
+\usepackage{tabularx}              % more on tables
+\usepackage{picinpar}              % insert pictures into paragraphs.
+\usepackage{makeidx}               % index
+\usepackage{url}                   % URLs
+%\usepackage[pagebackref]{hyperref} %hyper-refs and back refs
+%\usepackage{indentfirst}           % indent first paragraph
+
+%% margins
+\usepackage{vmargin}
+\setpapersize{A4}
+%\setmargins{leftmargin}{topmargin}{rightmargin}{bottommargin}{headheight}{headsep}{footheight}{footskip}
+\setmarginsrb{30mm}{25mm}{25mm}{25mm}{5mm}{5mm}{8mm}{8mm}
+
+%%line spacing
+\usepackage{setspace}
+\setstretch{1.2}           % Sets spacing different from the default 1 1/2
+
+%% headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}               % clear all fields
+\fancyhead[RO]{LEIC/2005-06/Relatório de Estágio} % one sided
+\fancyfoot{}               % clear all fields
+\fancyfoot[CO]{\textit{\thepage}} % one sided
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setcounter{topnumber}{1}  % maximum number of floats at top of page
+\setcounter{tocdepth}{2}   % sets the depth of sectional units listed in the toc
+
+\bibliographystyle{alpha}% style for references
+
+%%% changes to REPORT
+
+% %% modifications to \chapter
+% \makeatletter
+% \renewcommand{\chaptermark}[1]%
+%    {\markboth{#1}{}}
+% \newcommand{\cmda}[2][default]{
+%    \newpage
+%    \noindent
+%    \addtocounter{chapter}{1}         % better, use instead \refstepcounter
+%    {\\[16mm] \Huge \thechapter \@chapapp\space \Huge\scshape #1 \\[2mm] \par}
+%    \chaptermark{\textup{#1}}
+%    \setcounter{section}{0}
+%    \setcounter{subsection}{0}
+%    \setcounter{figure}{0}
+%    \setcounter{table}{0}
+%    \setcounter{paragraph}{0}
+%    \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter} #2}
+%    }
+% \newcommand{\cmdb}[1]{
+%    \newpage
+%    \noindent
+%    {\\[16mm] \Huge\scshape #1 \\[2mm] \par}
+%    %\addtocounter{chapter}{1}
+%    \chaptermark{\textup{#1}}
+%    \setcounter{section}{0}
+%    \setcounter{subsection}{0}
+%    \setcounter{figure}{0}
+%    \setcounter{table}{0}
+%    \setcounter{paragraph}{0}
+%    %\addcontentsline{toc}{chapter}{\protect\numberline{\thechapter} #1}
+%    }
+% \renewcommand{\chapter}{\secdef\cmda\cmdb}
+% \makeatother

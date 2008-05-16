@@ -1,0 +1,130 @@
+%-----------------------------------------------------
+% Template para criação de relatórios da LEIC
+% jlopes AT fe.up.pt, Fri May 19 09:32:24 2006
+%-----------------------------------------------------
+%
+\documentclass[oneside,a4paper,portuges,11pt]{report}
+%
+%% packages
+\usepackage[portuges]{babel}       % português
+\usepackage{graphicx}              % images .png or .pdf w/ pdflatex OR .eps w/ latex
+%\usepackage[T1]{fontenc}           % PS fonts
+\usepackage[latin1]{inputenc}      % 8 bits 
+\usepackage{tabularx}              % more on tables
+\usepackage{picinpar}              % insert pictures into paragraphs.
+\usepackage{makeidx}               % index
+\usepackage{url}                   % URLs
+%\usepackage[pagebackref]{hyperref} %hyper-refs and back refs
+%\usepackage{indentfirst}           % indent first paragraph
+
+%% margins
+\usepackage{vmargin}
+\setpapersize{A4}
+%\setmargins{leftmargin}{topmargin}{rightmargin}{bottommargin}{headheight}{headsep}{footheight}{footskip}
+\setmarginsrb{30mm}{20mm}{30mm}{20mm}{5mm}{10mm}{5mm}{10mm}
+
+%%line spacing
+\usepackage{setspace}
+\setstretch{1.2}           % Sets spacing different from the default 1 1/2
+
+%% headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}               % clear all fields
+\fancyhead[LO]{LEIC/2005-06/Relatório de Estágio} % one sided
+\fancyhead[RO]{\thepage}   % one sided
+\fancyfoot{}               % clear all fields
+%\fancyfoot[CO]{\textit{\thepage}} % one sided
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setcounter{topnumber}{1}  % maximum number of floats at top of page
+\setcounter{tocdepth}{2}   % sets the depth of sectional units listed in the toc
+
+%macros
+\newcommand{\leic}{Licenciatura em Engenharia Informática e Computação}
+\newcommand{\feup}{Faculdade de Engenharia da Universidade do Porto}
+%
+\includeonly{%
+dedica,%
+resumo,%
+agradece,%
+chapter1,%
+chapter2,%
+chapter3,%
+chapter4,%
+chapter5,%
+chapter6,%
+chapter7,%
+anexo1,%
+anexo2,%
+%anexo3
+}
+
+%\listfiles               % list files needed to compile this
+
+\begin{document}
+
+%%-- first page
+\begin{titlepage}
+\begin{center}
+\vspace*{-14mm}
+{\Large Faculdade de Engenharia da Universidade do Porto}\\[2mm]
+{\Large Licenciatura em Engenharia Informática e Computação}\\[18mm]
+\includegraphics[width=56mm]{feup-logo.png}\\[20mm]
+{\Large\bf $\ll$Título do Relatório do Estágio Curricular$\gg$ na\\
+ $\ll$instituição onde decorreu o estágio$\gg$}\\[6mm]
+{\large\bf Relatório do Estágio Curricular da LEIC $\ll$Ano Lectivo$\gg$}\\[40mm]
+{\Large $\ll$Nome do Autor$\gg$}\\[30mm]
+Orientador na FEUP: Prof.\ $\ll$Nome do orientador$\gg$\\
+Orientador na $\ll$Instituição$\gg$: Eng.\ $\ll$Nome do orientador$\gg$\\
+\vfill %Go to the bottom of the page
+$\ll$Mês$\gg$ de $\ll$Ano$\gg$
+\end{center}
+\end{titlepage}
+
+\cleardoublepage       % an empty page                 
+% Roman page numbering
+\pagenumbering{roman}\setcounter{page}{1}
+
+%%-- PREAMBLE (single-spaced)
+\begin{singlespace}            
+\include{dedica}
+\include{resumo}
+\include{agradece}
+\tableofcontents
+\listoffigures
+\listoftables
+\end{singlespace}
+
+\cleardoublepage                     
+% Arabic page numbering
+\pagenumbering{arabic}\setcounter{page}{1}
+
+%%-- MAIN CHAPTERS
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+\include{chapter6}
+\include{chapter7}
+
+%%-- FINALE (single-spaced)
+\begin{singlespace}
+
+%bibliography
+\bibliographystyle{alpha}% style for references
+\addcontentsline{toc}{chapter}{Bibliografia}  % add it to table of contents
+\bibliography{biblio}
+
+\include{anexo1}
+\include{anexo2}
+
+% Uncomment to make the index
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex         
+\end{singlespace}
+
+\end{document}
+\bye
