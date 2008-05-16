@@ -1,20 +1,16 @@
 %  Last modified on   Fri May 19 09:58:40 2006
 
-\chapter{O Problema: Radiolocalização por Bluetooth}
-\label{_Ref177384068}
-
-Neste capítulo será dado a conhecer ao leitor a definição completa do problema.
-Embora de forma sucinta, são apresentados os conceitos em que o problema assenta.
-Esta apresentação será devidamente guiada para que o leitor não tenha dificuldades
-em ler o resto do documento.
+\chapter{O Problema de Radiolocalização por Bluetooth}
+\label{ch:problema}
+Neste capítulo será dado a conhecer ao leitor a definição completa do problema. Embora de forma sucinta, são apresentados os conceitos em que o problema assenta. Esta apresentação será devidamente guiada para que o leitor não tenha dificuldades em ler o resto do documento.
 
 \section{Definição}
 
 O problema é construir um sistema de radiolocalização passiva de aparelhos móveis apoiado em BT. O ambiente alvo é \foreign{indoor}. Pretende-se que a localização seja orientada à posição num local, e não à presença num local.
 
-No sentido lato, radiolocalização é o acto de localizar a posição de um objecto com recurso a ondas rádio. Pode ser feita activamente ou passivamente. Activamente, o objecto analisa as ondas rádio presentes no meio para saber onde se encontra. Passivamente, as ondas rádio provenientes de um objecto são analisadas por um ou mais agentes exteriores para determinar a localização desse objecto [WC:Radiolocalização].
+No sentido lato, radiolocalização é o acto de localizar a posição de um objecto com recurso a ondas rádio. Pode ser feita activamente ou passivamente. Activamente, o objecto analisa as ondas rádio presentes no meio para saber onde se encontra. Passivamente, as ondas rádio provenientes de um objecto são analisadas por um ou mais agentes exteriores para determinar a localização desse objecto \cite{WC:Radiolocalizacao}.
 
-Os aparelhos BT a localizar, também denominados sujeitos ou Rovers, serão telemóveis ou PDAs, sobre os quais não há controlo. Ou seja, nestes dispositivos não é possível fazer nenhuma alteração de \foreign{hardware}. No máximo, o sistema pode requerer a instalação de algum \foreign{software}, mas mesmo isso é indesejado. Pretende-se que o sistema consiga localizar qualquer tipo de telemóvel/PDA. No mínimo, é desejado que a solução funcione com dispositivos baseado em \nname{Windows Mobile}. Nos dispositivos de apoio, denominados observadores ou Beacons, temos liberdade total, desde o \foreign{hardware} ao \foreign{software}. No entanto, tenta-se evitar soluções ``exóticas''.
+Os aparelhos BT a localizar, também denominados sujeitos ou Rovers, serão telemóveis ou PDAs, sobre os quais não há controlo. Ou seja, nestes dispositivos não é possível fazer nenhuma alteração de \foreign{hardware}. No máximo, o sistema pode requerer a instalação de algum \foreign{software}, mas mesmo isso é indesejado. Pretende-se que o sistema consiga localizar qualquer tipo de telemóvel ou PDA. No mínimo, a solução tem que funcionar com dispositivos baseado em \nname{Windows Mobile}. Nos dispositivos de apoio, denominados observadores ou Beacons, temos liberdade total, desde o \foreign{hardware} ao \foreign{software}. No entanto, deve-se tentar evitar soluções que recorram a modificações de \foreign{hardware}.
 
 \section{Background}
 
@@ -30,48 +26,56 @@ Para dar um melhor entendimento do conceito, será explicado:
 
 \subsection{Localização de um objecto}
 
-A localização de um objecto é normalmente definida por uma posição. Uma posição é caracterizada por um conjunto de valores de coordenadas dentro de um sistema de coordenadas [WP:Position]. Um sistema de coordenadas é geralmente definido por um ponto de origem e vários eixos. Cada coordenada da posição é referente a um eixo e representa a distância nesse eixo do ponto em questão à origem do referencial [WP:CoordinateSystem]. Por exemplo, um dos sistemas mais conhecidos é o \foreign{World Geodetic System} [WP:WGS], o sistema de coordenadas que usamos quando referimos coordenadas de longitude e latitude.
+A localização de um objecto é normalmente definida por uma posição. Uma posição é caracterizada por um conjunto de valores de coordenadas dentro de um sistema de coordenadas \cite{WP:Position}. Um sistema de coordenadas é geralmente definido por um ponto de origem e vários eixos. Cada coordenada da posição é referente a um eixo e representa a distância nesse eixo do ponto em questão à origem do referencial \cite{WP:CoordinateSystem}. Por exemplo, um dos sistemas mais conhecidos é o \foreign{World Geodetic System} \cite{WP:WGS}, o sistema de coordenadas que usamos quando referimos coordenadas de longitude e latitude.
 
 \subsection{Ondas rádio e comunicação rádio}
 
-Ondas rádio são um caso particular de ondas electromagnéticas com frequência dentro do espectro das frequências de rádio (entre 3 Hz e 30 GHz) [WP:OndasDeRádio] [WP:RadioFrequency]. Uma onda electromagnética é um campo electromagnético que viaja no espaço, provocando oscilações de energia por onde passa [WP:RadiaçãoEM]. Convém ter em mente que as ondas podem ser alteradas durante o seu percurso, dependendo da matéria com que interagem. Por exemplo: ao atravessar um vidro deformado, uma onda pode mudar de direcção ou perder força; ao ``colidir'' com um determinado material, uma onda pode dissipar-se. São muitos os tipos de alterações a que uma onda é susceptível. A susceptibilidade de uma onda sofrer uma certa alteração depende das características da onda.
+Ondas rádio são um caso particular de ondas electromagnéticas com frequência dentro do espectro das frequências de rádio (entre 3 Hz e 30 GHz) \cite{WP:OndasDeRadio} \cite{WP:RadioFrequency}. Uma onda electromagnética é um campo electromagnético que viaja no espaço, provocando oscilações de energia por onde passa \cite{WP:RadiacaoEM}. Convém ter em mente que as ondas podem ser alteradas durante o seu percurso, dependendo da matéria com que interagem. Por exemplo: ao atravessar um vidro deformado, uma onda pode mudar de direcção ou perder força; ao ``colidir'' com um determinado material, uma onda pode dissipar-se. São muitos os tipos de alterações a que uma onda é susceptível. A susceptibilidade de uma onda sofrer uma certa alteração depende das características da onda.
 
-A comunicação por ondas rádio é feita por dois dispositivos: um que gera as ondas rádio e outro que consegue detectar quando é atravessado por elas. Se associarmos um símbolo a um conjunto de características de uma onda, cada vez que o receptor detecta uma onda com essas características a atravessá-lo, considera que o emissor lhe comunicou esse símbolo [WP:Radio]. Posto isto, podemos dizer que o sucesso de uma comunicação por ondas rádio depende de três factores: a capacidade do emissor gerar ondas, a capacidade do meio transportar as ondas de forma fiável e a capacidade do receptor reconhecer as ondas que o atravessam. Por norma, é fácil garantir um bom mecanismo de emissão e recepção, o que normalmente apresenta problemas é o meio de propagação do sinal.
+A comunicação por ondas rádio é feita por dois dispositivos: um que gera as ondas rádio e outro que consegue detectar quando é atravessado por elas. Se associarmos um símbolo a um conjunto de características de uma onda, cada vez que o receptor detecta uma onda com essas características a atravessá-lo, considera que o emissor lhe comunicou esse símbolo \cite{WP:Radio}. Posto isto, podemos dizer que o sucesso de uma comunicação por ondas rádio depende de três factores: a capacidade do emissor gerar ondas, a capacidade do meio transportar as ondas de forma fiável e a capacidade do receptor reconhecer as ondas que o atravessam. Por norma, é fácil garantir um bom mecanismo de emissão e recepção, o que normalmente apresenta problemas é o meio de propagação do sinal.
 
 \subsection{Localização clássica}
 
-Historicamente, a localização é uma componente da navegação. Navegar é planear e executar uma viagem de um ponto de origem para um de destino. Durante a viagem, um dos actos mais importante é a localização. Localizar é determinar a posição a que um sujeito se encontra, normalmente para verificar que a viagem está a decorrer correctamente, aplicando as medidas correctivas necessárias [WP:Navigation].
+Historicamente, a localização é uma componente da navegação. Navegar é planear e executar uma viagem de um ponto de origem para um de destino. Durante a viagem, um dos actos mais importante é a localização. Localizar é determinar a posição a que um sujeito se encontra, normalmente para verificar que a viagem está a decorrer correctamente, aplicando as medidas correctivas necessárias \cite{WP:Navigation}.
 
-A ``arte'' da localização foi evoluindo ao longo dos tempos. Começaram por ser usados esquemas simples, como o reconhecimento básico e a navegação estimada. Estes sempre foram usados, tanto por Humanos como outros animais, para conseguir navegar ao longo do seu meio envolvente. O reconhecimento básico envolve reconhecer ``algo'', seja um sítio ou um objecto estacionário. Assim que é encontrado esse ``algo'', podemos dizer que nos encontramos na proximidade dele. A navegação estimada é, sabendo a posição anterior, direcção do movimento, velocidade e diferença de tempo, estimar a posição actual. Nesta técnica podemos também substituir a velocidade e diferença de tempo por distância percorrida [WP:DeadReckoning].
+A ``arte'' da localização foi evoluindo ao longo dos tempos. Começaram por ser usados esquemas simples, como o reconhecimento básico e a navegação estimada. Estes sempre foram usados, tanto por Humanos como outros animais, para conseguir navegar ao longo do seu meio envolvente. O reconhecimento básico envolve reconhecer ``algo'', seja um sítio ou um objecto estacionário. Assim que é encontrado esse ``algo'', podemos dizer que nos encontramos na proximidade dele. A navegação estimada é, sabendo a posição anterior, direcção do movimento, velocidade e diferença de tempo, estimar a posição actual. Nesta técnica podemos também substituir a velocidade e diferença de tempo por distância percorrida \cite{WP:DeadReckoning}.
 
-Com o avanço no campo da matemática, apareceram as noções de trigonometria, dando origem aos conceitos de trilateração e triangulação. Apoiadas nestes dois conceitos, apareceram novas técnicas de localização. Uma das mais conhecidas é a navegação celestial, que recorre a sextantes [WP:Sextante] (ou equivalentes), à posição de certos corpos celestiais e à triangulação.
+Com o avanço no campo da matemática, apareceram as noções de trigonometria, dando origem aos conceitos de trilateração e triangulação. Apoiadas nestes dois conceitos, apareceram novas técnicas de localização. Uma das mais conhecidas é a navegação celestial, que recorre a sextantes \cite{WP:Sextante} (ou equivalentes), à posição de certos corpos celestiais e à triangulação.
 
-A triangulação permite-nos determinar a posição de um sujeito sabendo o ângulo a que ele se encontra de duas localizações conhecidas (para mais informação, consultar [WP:Triangulation]).
+A triangulação permite-nos determinar a posição de um sujeito sabendo o ângulo a que ele se encontra de duas localizações conhecidas (para mais informação, consultar \cite{WP:Triangulation}).
 
-\textcolor[rgb]{1,0,0}{Distance\_by\_triangulation}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{744px-Distance_by_triangulation.png}
+  \caption{Ilustração de uma triangulação.}
+  \label{fig:Triangulation}
+\end{figure}
 
-Em contrapartida, a trilateração baseia-se em, pelo menos, três posições conhecidas e nas distâncias entre cada uma destas e o sujeito a ser localizado. Cada conjunto formado por uma posição conhecida e a distância ao sujeito, pode ser visto como um círculo centrado nesse ponto conhecido. A intersecção de três destes círculos é a posição do sujeito. A grande fraqueza deste método é apenas funcionar com valores perfeitos. Basta um pequeno erro em qualquer um dos valores para a solução se tornar impossível [WP:Trilateration].
+Em contrapartida, a trilateração baseia-se em, pelo menos, três posições conhecidas e nas distâncias entre cada uma destas e o sujeito a ser localizado. Cada conjunto formado por uma posição conhecida e a distância ao sujeito, pode ser visto como um círculo centrado nesse ponto conhecido. A intersecção de três destes círculos é a posição do sujeito. A grande fraqueza deste método é apenas funcionar com valores perfeitos. Basta um pequeno erro em qualquer um dos valores para a solução se tornar impossível \cite{WP:Trilateration}.
 
-\textcolor[rgb]{1,0,0}{300px-Trilateration}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{300px-Trilateration.png}
+  \caption{Ilustração de uma trilateração.}
+  \label{fig:Trilateration}
+\end{figure}
 
-Os métodos mais recentes de localização baseiam-se sobretudo na comunicação de ondas electromagnéticas. Um caso recente da aplicação de uma técnica de localização baseada em ondas electromagnéticas é o Sistema de Posicionamento Global, mais conhecido por GPS (acrónimo do nome em inglês, \foreign{Global Positioning System} [WP:GPS]). Hoje em dia, este sistema é o \foreign{standard de facto} em termos de localização.
+Os métodos mais recentes de localização baseiam-se sobretudo na comunicação de ondas electromagnéticas. Um caso recente da aplicação de uma técnica de localização baseada em ondas electromagnéticas é o Sistema de Posicionamento Global, mais conhecido por GPS (acrónimo do nome em inglês, \foreign{Global Positioning System} \cite{WP:GPS}). Hoje em dia, este sistema é o \foreign{standard de facto} em termos de localização.
 
 \subsection{Os vários métodos de radiolocalização}
 
 A descoberta das ondas electromagnéticas trouxe novas técnicas de localização. Embora haja um vasto leque de sistemas de localização, quase todos se baseiam num conjunto base de métodos, ou variações dos mesmos. Estes métodos são:
 \begin{itemize}
-\item Medição do ângulo de recepção do sinal,
-\item Medição do tempo de voo da onda e,
-\item Medição das alterações na onda ao longo do voo.
+	\item Medição do ângulo de recepção do sinal,
+	\item Medição do tempo de voo da onda e,
+	\item Medição das alterações na onda ao longo do voo.
 \end{itemize}
 
 A alteração mais considerada é a atenuação da onda. Seguidamente, cada um destes métodos será devidamente explicado, analisando as desvantagens de cada um dos métodos. Note-se que esta análise de contras é tendenciosa por ser feita, maioritariamente, sob o ponto de vista do problema a resolver.
 
 \subsubsection{Ângulo de recepção}
 
-A idealização do método parece simples: descobrir o ângulo de chegada em dois sítios para poder triangularizar. Há várias maneiras de o fazer. A mais simples é ter uma antena, em rotação constante e regular, que detecta sob qual direcção se recebe com mais força o sinal emitido pelo sujeito a localizar [WP:RadioDirectionFinder]. Isto pode ser feito de outras maneiras, por exemplo o uso de sistema do tipo Lorenz [WP:Lorenz(navigation)] ou outras descritas em [WP: AngleOfArrival].
-
-\textcolor[rgb]{1,0,0}{NDB\_Article\_Airspace\_Fix\_Diagram}
+A idealização do método parece simples: descobrir o ângulo de chegada em dois sítios para poder triangularizar. Há várias maneiras de o fazer. A mais simples é ter uma antena, em rotação constante e regular, que detecta sob qual direcção se recebe com mais força o sinal emitido pelo sujeito a localizar \cite{WP:RadioDirectionFinder}. Isto pode ser feito de outras maneiras, por exemplo o uso de sistema do tipo Lorenz \cite{WP:Lorenz(navigation)} ou outras descritas em \cite{WP:AngleOfArrival}.
 
 A desvantagem mais óbvia é não ser exequível com antenas omnidireccionais simples.
 
@@ -81,98 +85,115 @@ Se soubermos os tempos absolutos que uma onda demorou a ir e vir, sabendo a velo
 
 A implementação deste método pode ser pensada de duas maneiras. Se o sujeito a localizar reflectir ondas electromagnéticas, podemos enviar uma onda e medir quanto tempo demora da emissão da onda inicial até à chegada da reflexão da onda. O maior problema aqui é a onda ser reflectida em algo que não o sujeito. Nesse caso estaríamos a medir algo que não o sujeito.
 
-A outra implementação é ser o próprio sujeito a emitir uma onda. Aqui, o receptor não sabe quando é que a onda foi emitida, só sabe o tempo de chegada. Para ultrapassar isto, podemos redefinir ligeiramente a solução. Em vez de considerar só o tempo de chegada, consideramos a diferença do tempo de chegada a vários pontos. Se soubermos 3 tempos de chegada a 3 receptores conhecidos de uma onda emitida no sujeito, calculando a diferença entre estes tempos, podemos deduzir três hiperbolóides. Seguindo um pensamento similar ao da trilateração\footnote{ Cada diferença de tempo de chegada da onda num par de receptores pode definir uma hiperbolóide. Se mantivermos o pensamento da trilateração mas substituirmos os círculos por estas hiperbolóides, temos a localização do sujeito.}, temos a posição do sujeito. Esta implementação é apelidada Multilateração, ou localização hiperbolóide [WP:Multilateration].
+A outra implementação é ser o próprio sujeito a emitir uma onda. Aqui, o receptor não sabe quando é que a onda foi emitida, só sabe o tempo de chegada. Para ultrapassar isto, podemos redefinir ligeiramente a solução. Em vez de considerar só o tempo de chegada, consideramos a diferença do tempo de chegada a vários pontos. Se soubermos 3 tempos de chegada a 3 receptores conhecidos de uma onda emitida no sujeito, calculando a diferença entre estes tempos, podemos deduzir três hiperbolóides. Seguindo um pensamento similar ao da trilateração\footnote{ Cada diferença de tempo de chegada da onda num par de receptores pode definir uma hiperbolóide. Se mantivermos o pensamento da trilateração mas substituirmos os círculos por estas hiperbolóides, temos a localização do sujeito.}, temos a posição do sujeito. Esta implementação é apelidada Multilateração, ou localização hiperbolóide \cite{WP:Multilateration}.
 
 O maior obstáculo em ambos os métodos é o da medição de tempos. Os níveis de precisão e exactidão do método são directamente proporcionais aos existentes na medição dos tempos. 
 
 \subsubsection{Alterações no voo}
 
-A atenuação da potência da onda é quadrática ao longo do trajecto, segundo a equação de radar [WP:Radar]. Se um receptor souber a potência de sinal da onda à saída do sujeito e a potência com que a recebe, podemos calcular a distância com a equação de radar (ou uma variação mais apropriada da mesma).
+A atenuação da potência da onda é quadrática ao longo do trajecto, segundo a equação de radar \cite{WP:Radar}. Se um receptor souber a potência de sinal da onda à saída do sujeito e a potência com que a recebe, podemos calcular a distância com a equação de radar (ou uma variação mais apropriada da mesma).
 
 Aqui, o problema é saber as duas potências. Geralmente, os receptores têm uma indicação da força de sinal recebida (conhecida por RSSI, acrónimo do inglês \foreign{Recieved Signal Strength Indication}). A potência emitida tem de ser dada a conhecer ao receptor de alguma maneira.
 
 \subsubsection{Problema comum: Reflexões}
 
-Uma onda omnidireccional pode ser vista como uma série de ondas direccionais em todos os sentidos. Se uma destas ondas for reflectida, o receptor pode ver duas vezes a mesma onda, a directa e a reflectida. A reflexão pode ser feita por vários tipos de obstáculos: objectos metálicos, montanhas, etc.{\ldots} Além disso, a onda directa pode nunca chegar ao receptor, chegando só reflexões. [WP:Multipath]
+Uma onda omnidireccional pode ser vista como uma série de ondas direccionais em todos os sentidos. Se uma destas ondas for reflectida, o receptor pode ver duas vezes a mesma onda, a directa e a reflectida. A reflexão pode ser feita por vários tipos de obstáculos: objectos metálicos, montanhas, etc\ldots Além disso, a onda directa pode nunca chegar ao receptor, chegando só reflexões. \cite{WP:Multipath}
 
-\textcolor[rgb]{1,0,0}{Multichemin}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{Multichemin.png}
+  \caption{Ilustração de um processo de radiolocalização afectado por reflexões.}
+  \label{fig:Multichemin}
+\end{figure}
 
-Nos cálculos de ângulo de voo, podemos ver várias \emph{imagens} do mesmo objecto, o que pode dificultar a decisão sobre o ângulo.
+Nos cálculos de ângulo de voo, podemos ver várias imagens do mesmo objecto, o que pode dificultar a decisão sobre o ângulo.
 
 Tanto no tempo como nas alterações de voo, acabamos por ver várias recepções da mesma onda. Se não ignorarmos as reflexões, que chegam mais tarde que a onda directa, podemos pensar que, por momentos, o objecto se distanciou.
 
-Há algumas maneiras de contrariar os efeitos das reflexões. Por exemplo, as descritas em [WP:Orthogonal\_frequency\_division\_modulation] ou [WP:Rake\_receiver].
+Há algumas maneiras de contrariar os efeitos das reflexões. Por exemplo, as descritas em \cite{WP:OrthogonalFrequencyDivisionModulation} ou \cite{WP:RakeReceiver}.
 
 \subsection{Bluetooth}
 
 \subsubsection{Introdução}
 
-\emph{Bluetooth}, também conhecido por BT, é uma especificação industrial para redes pessoais sem fios. O BT permite conectar e trocar informação entre dispositivos tais como telefones, portáteis, computadores, impressoras, câmaras digitais e consolas de vídeo jogos, sobre ondas rádio de forma segura. A especificação de BT é desenvolvida e licenciada pelo \emph{Bluetooth Special Interest Group}.
+\nname{Bluetooth}, também conhecido por BT, é uma especificação industrial para redes pessoais sem fios. O BT permite conectar e trocar informação entre dispositivos tais como telefones, portáteis, computadores, impressoras, câmaras digitais e consolas de vídeo jogos, sobre ondas rádio de forma segura. A especificação de BT é desenvolvida e licenciada pelo \nname{Bluetooth Special Interest Group}.
 
-O BT define o protocolo de comunicações e o standard de comunicação rádio. Foi desenhado com o objectivo de ter baixos consumos, apoiando-se em emissores/receptores de custo reduzido. Os alcances variam conforme a classe do dispositivo BT (Classe 3: \~1 metro; Classe 2: \~10 metros; Classe 1: \~100 metros).
+O BT define o protocolo de comunicações e o standard de comunicação rádio. Foi desenhado com o objectivo de ter baixos consumos, apoiando-se em emissores/receptores de custo reduzido. Os alcances variam conforme a classe do dispositivo BT (Classe 3: $\sim 1$ metro; Classe 2: $\sim 10$ metros; Classe 1: $\sim 100$ metros).
 
 O BT permite que estes dispositivos comuniquem entre si quando estiverem ao alcance uns dos outros. Os dispositivos usam um sistema de comunicações por rádio e, por isso, não precisam de estar ao alcance visual entre eles. Podem até estar em divisões diferentes, desde que a transmissão seja suficientemente forte.
 
-O protocolo opera na banda ISM, livre de licenciamento, na banda de frequências 2.4-2.4835 GHz. Para evitar que interfira com outros protocolos que usam esta banda, o BT divide a banda em 79 canais (cada um de 1 MHz) e alterna entre esses canais. [WP:Bluetooth]
+O protocolo opera na banda ISM, livre de licenciamento, na banda de frequências 2,4--2,4835 GHz. Para evitar que interfira com outros protocolos que usam esta banda, o BT divide a banda em 79 canais (cada um de 1 MHz) e alterna entre esses canais. \cite{WP:Bluetooth}
 
 \subsubsection{Arquitectura típica}
 
-Tomemos como exemplo da arquitectura da implementação de BT da Microsoft, descrita no diagrama da figura X (retirado de [MS:BluetoothStackArchitecture]).
+Tomemos como exemplo da arquitectura da implementação de BT da \nname{Microsoft}, descrita no diagrama da figura X (retirado de \cite{MS:BluetoothStackArchitecture}).
 
-Exceptuando os módulos de TDI e WinSock, todas as outras implementações seguem a mesma linha de pensamento.
+Exceptuando os módulos de \nname{TDI} e \nname{WinSock}, todas as outras implementações seguem a mesma linha de pensamento.
 
-\textcolor[rgb]{1,0,0}{ms863323}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{btstack.png}
+  \caption{Arquitectura da implementação da \foreign{stack} de BT da \nname{Microsoft}.}
+  \label{fig:BTStack}
+\end{figure}
 
-De um modo muito grosseiro podemos dividir a arquitectura em 3 grande partes: O \emph{hardware} de BT, o HCI e os serviços de BT.
+De um modo muito grosseiro podemos dividir a arquitectura em 3 grande partes: O \foreign{hardware} de BT, o HCI e os serviços de BT.
 
 \paragraph{Hardware Bluetooth}
 
-O \emph{hardware} de BT é responsável por implementar as três partes de mais baixo nível de todo do sistema. Estas são a interface com o emissor/receptor de ondas rádio, o controlador de canais rádio e uma interface HCI.
+O \foreign{hardware} de BT é responsável por implementar as três partes de mais baixo nível de todo do sistema. Estas são a interface com o emissor/receptor de ondas rádio, o controlador de canais rádio e uma interface HCI.
 
 A interface com o emissor/receptor de ondas rádio é responsável pela manipulação e detecção de ondas rádio.
 
-O controlador de canais é responsável pela gestão dos canais de rádio. Isto passa por atender as ordens de manipulações dos canais (estabelecer um canal, enviar dados por um determinado canal, etc.). É também responsável por sinalizar as alterações feitas nos canais (um canal fechou inesperadamente, há dados à espera de serem lidos num certo canal, etc.).
+O controlador de canais é responsável pela gestão dos canais de rádio. Isto passa por atender as ordens de manipulações dos canais (estabelecer um canal, enviar dados por um determinado canal, etc\ldots). É também responsável por sinalizar as alterações feitas nos canais (um canal fechou inesperadamente, há dados à espera de serem lidos num certo canal, etc\ldots).
 
 \paragraph{HCI}
 
-HCI é o acrónimo de \foreign{Host -- Controller Interface}, inglês de Interface Controlador -- Anfitrião. Como o nome indica, o HCI é a interface que define o protocolo de comunicação entre o controlador de BT e o anfitrião onde este está alojado. Tanto o \emph{hardware} de BT como o sistema operativo anfitrião têm uma implementação do HCI e é através desta interface que comunicam. 
+HCI é o acrónimo de \foreign{Host -- Controller Interface}, inglês de Interface Controlador -- Anfitrião. Como o nome indica, o HCI é a interface que define o protocolo de comunicação entre o controlador de BT e o anfitrião onde este está alojado. Tanto o \foreign{hardware} de BT como o sistema operativo anfitrião têm uma implementação do HCI e é através desta interface que comunicam.
 
 Tendo em conta que toda a comunicação de dados é feita pelo HCI, este é o denominador comum de toda a funcionalidade.
 
 \paragraph{Serviços de Bluetooth}
 
-Os serviços de BT estão implementados do lado do anfitrião. Todos os serviços se apoiam, directa ou indirectamente, no HCI. Há uma grande panóplia de serviços \emph{standard} disponíveis, mas não são relevantes para a resolução do problema. Qualquer tipo de informação sobre as ondas rádios terá que ser disponibilizada pelo HCI. Logo, podemos ignorar todos estes serviços e focarmo-nos na manipulação e inspecção do \emph{hardware} de BT através do HCI.
+Os serviços de BT estão implementados do lado do anfitrião. Todos os serviços se apoiam, directa ou indirectamente, no HCI. Há uma grande panóplia de serviços \foreign{standard} disponíveis, mas não são relevantes para a resolução do problema. Qualquer tipo de informação sobre as ondas rádios terá que ser disponibilizada pelo HCI. Logo, podemos ignorar todos estes serviços e focarmo-nos na manipulação e inspecção do \foreign{hardware} de BT através do HCI.
 
 \section{Radiolocalização em Bluetooth}
-\label{_Ref177229713}
+\label{ch:problema:radiolocalizacao}
 
 Sabendo as condições que o BT oferece, passaremos à análise da exequibilidade de cada método de radiolocalização.
 
 \subsubsection{Ângulo de recepção}
 
-Os modelos comuns são todos comercializados com antenas omnidireccionais. Uma solução que adoptasse esta técnica teria de usar \emph{hardware} específico.
+Os modelos comuns são todos comercializados com antenas omnidireccionais. Uma solução que adoptasse esta técnica teria de usar \foreign{hardware} específico. Por ter de recorrer a \foreign{hardware} específico, esta técnica foi posta de parte.
 
 \subsubsection{Tempo de voo}
 
 O HCI não fornece precisão suficiente sobre a altura em que as ondas foram recebidas.
 
-Isto poderia ser feito indirectamente com recurso a restrições de QoS, (acrónimo de \foreign{Quality of Service}, inglês para Qualidade de Serviço). Uma ligação pode ter termos mínimos de qualidade associados. Se estes forem violados, o HCI deveria notificar os intervenientes na ligação. Se pudéssemos limitar a latência da comunicação, de certa forma estaríamos a controlar o tempo de voo da onda. No entanto, a implementação de BT em alguns dispositivos \emph{Windows Mobile} só suporta intervalos múltiplos de 2,5 segundos. Os valores permitidos não têm uma resolução aceitável para localização dentro de uma sala (em 2,5 segundos, uma onda electromagnética percorre 750 mil quilómetros no vazio).
+Isto poderia ser feito indirectamente com recurso a restrições de QoS, (acrónimo de \foreign{Quality of Service}, inglês para Qualidade de Serviço). Uma ligação pode ter termos mínimos de qualidade associados. Se estes forem violados, o HCI deveria notificar os intervenientes na ligação. Se pudéssemos limitar a latência da comunicação, de certa forma estaríamos a controlar o tempo de voo da onda. No entanto, a implementação de BT em alguns dispositivos \nname{Windows Mobile} só suporta intervalos múltiplos de 2,5 segundos. Os valores permitidos não têm uma resolução aceitável para localização dentro de uma sala (em 2,5 segundos, uma onda electromagnética percorre 750 mil quilómetros no vazio).
+
+Não se tendo conseguido ultrapassar nenhuma destas dificuldades, esta técnica também foi posta de parte.
 
 \subsubsection{Alterações no voo}
+\label{ch:problema:alteracoes}
+O HCI tem três parâmetros que poderiam ser usados como base desta técnica: \foreign{Transmit Power}, \foreign{Link Quality} e RSSI.
 
-O HCI tem três parâmetros que poderiam ser usados como base desta técnica: \emph{Transmit Power}, \emph{Link Quality} e RSSI.
+O \foreign{Transmit power} é o ganho que está presente na antena de emissão de ondas. Isto poderia ser interpretado como a quantidade de atenuação que uma onda está a sofrer. Se é preciso enviar a onda com mais potência, então está a haver mais atenuação.
 
-O \emph{Transmit power} é o ganho que está presente na antena de emissão de ondas. Isto poderia ser interpretado como a quantidade de atenuação que uma onda está a sofrer. Se é preciso enviar a onda com mais potência, então está a haver mais atenuação.
+O \foreign{Link Quality} é um campo que deveria representar a qualidade da ligação. Na especificação, não é feita nenhuma exigência sobre em que características da ligação este valor se deve basear. Na CSR, a \foreign{Link Quality} é medida com base no BER, (\foreign{Bit Error Rate}, inglês para Quociente de Erros por Bit), inglês para taxa de erros em bits. Se pensarmos que uma ligação mais ``frágil'' (que sofre de mais atenuação) tem mais erros por bit, há a possibilidade de existir uma correlação com a atenuação e, por extensão, com a distância.
 
-O \emph{Link Q}\emph{uality} é um campo que deveria representar a qualidade da ligação. Na especificação, não é feita nenhuma exigência sobre em que características da ligação este valor se deve basear. Na CSR, a \emph{Link Quality} é medida com base no BER, (\emph{Bit Error Rate}, inglês para Quociente de Erros por Bit), inglês para taxa de erros em bits. Se pensarmos que uma ligação mais ``frágil'' (que sofre de mais atenuação) tem mais erros por bit, há a possibilidade de existir uma correlação com a atenuação e, por extensão, com a distância.
+O RSSI, tal como vem descrito na especificação de BT (\cite{BT:Spec}), é-nos inútil. Quando a potência de sinal recebida está dentro dos parâmetros definidos na especificação BT, o parâmetro está a zero. O valor sobe à medida que recebemos sinal com demasiada potência, e desce à medida que recebemos sinal com potência a menos. No entanto, os emissores são obrigados a manter o RSSI o mais perto do zero que conseguirem. Isto leva a que, se o RSSI desce, ambos os intervenientes subam a potência a que as ondas são trocadas para tentar levar de novo o RSSI a zero. Logo, esta medida vai passar a maior parte do tempo a zero.
 
-O RSSI, tal como vem descrito na especificação de BT, é-nos inútil. Quando a potência de sinal recebida está dentro dos parâmetros definidos na especificação BT, o parâmetro está a zero. O valor sobe à medida que recebemos sinal com demasiada potência, e desce à medida que recebemos sinal com potência a menos. No entanto, os emissores são obrigados a manter o RSSI o mais perto do zero que conseguirem. Isto leva a que, se o RSSI desce, ambos os intervenientes subam a potência a que as ondas são trocadas para tentar levar de novo o RSSI a zero. Logo, esta medida vai passar a maior parte do tempo a zero.
+Há um comando proprietário da CSR chamado RSSI\_ACL, descrito em \cite{RA:Spec}. Este comando dá, de facto, uma indicação da força do sinal recebido de uma ligação. Quanto maior a potência recebida, menor é a atenuação. Quanto menor é a atenuação, menor é a distância.
 
-Há um comando proprietário da CSR chamado RSSI\_ACL que dá, de facto, uma indicação da força do sinal recebido de uma ligação. Quanto maior a potência recebida, menor é a atenuação. Quanto menor é a atenuação, menor é a distância.
+Estas três medidas são claramente passíveis de terem uma relação com a distância. Por exclusão das outras técnicas e exequibilidade desta, é sobre esta técnica que irá incidir o trabalho deste estágio.
 
 \subsubsection{Tratamento de reflexões}
 
 O HCI nunca fornece mecanismo nem de controlo nem de inspecção directa sobre as características das ondas recebidas. Logo, todo o tratamento a reflexões que houver será feito pelo controlador de rádio do BT, ao qual não há acesso programático.
+
+\section{Resumo e Conclusões}
+Tendo estudado os métodos disponíveis para radiolocalização passiva de apoiada em BT, chega-se à conclusão que a única via que não foi eliminada pelos requisitos impostos ao problema é medir as alterações durante o voo das ondás rádio de BT. A escolha da alteração a ser medida pode recair sobre três medidas disponíveis: \foreign{Transmit Power}, \foreign{Link Quality} e RSSI\_ACL. Resta só por cada uma delas à prova e optar pela mais adequada.
 
 %$\ll$4 páginas sugeridas
 %\vspace*{\baselineskip}
@@ -263,7 +284,7 @@ O HCI nunca fornece mecanismo nem de controlo nem de inspecção directa sobre as 
 %%\section{Outra Secção Exemplo}
 %%Na figura~\ref{fig:triangle} mostra-se o mapeamento conceptual
 %utilizado na aproximação tradicional para provisão de persistência.
-%%\begin{figure}[t]
+%\begin{figure}[t]
 %  \centering
 %  %\includegraphics[width=106mm]{triangle.pdf}
 %  \caption{Mapeamento Conceptual na Aproximação Tradicional}

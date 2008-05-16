@@ -1,74 +1,94 @@
 %  Last modified on   Fri May 19 09:58:40 2006
 
 \chapter{Solução}
-\label{_Ref177464089}
+\label{ch:solucao}
 
 Neste capítulo será exposta a arquitectura da solução na sua totalidade. A análise é dividida na sua componente física e lógica.
 
 \section{Arquitectura Física}
-\label{_Ref177755736}
+\label{ch:solucao:fisica}
 
-Um Beacon é composto pelo dispositivo BT e por uma máquina que o hospeda. Além dos Beacons, existe uma máquina central. Todos os Beacons estão ligados de alguma maneira à máquina central, tipicamente através duma rede \emph{Ethernet}. Os Rovers, os dispositivos BT a localizar, podem estar presentes, ou não.
+Um Beacon é composto pelo dispositivo BT e por uma máquina que o hospeda. Além dos Beacons, existe uma máquina central. Todos os Beacons estão ligados de alguma maneira à máquina central, tipicamente através duma rede \nname{Ethernet}. Os Rovers, os dispositivos BT a localizar, podem estar presentes, ou não.
 
-O principal requisito para executar radiolocalização passiva é ter Beacons nas posições devidas\footnote{ A escolha das posições dos Beacons é exemplificada na secção 7.1.1}. Os Beacons devem estar dispostos tal forma que, todas as posições que nos interessa monitorar a presença do Rover, estejam ao alcance de pelo menos três Beacons (para ter as informações mínimas para a trilateração).
+O principal requisito para executar radiolocalização passiva é ter Beacons nas posições devidas\footnote{ A escolha das posições dos Beacons é exemplificada na secção~\ref{ch:resultados:instalacao}}. Os Beacons devem estar dispostos tal forma que, todas as posições que nos interessa monitorar a presença do Rover, estejam ao alcance de pelo menos três Beacons (para ter as informações mínimas para a trilateração).
 
 O objectivo é que os Beacons testem a presença dos Rovers, e quando conseguem estabelecer uma ligação com um Rover, meçam o RSSI\_ACL da ligação e enviem a medição a um computador central, chamado Central. Este é responsável por tentar deduzir a localização de todos os Rovers a que os Beacons consigam tirar medidas.
 
 
-\textcolor[rgb]{1,0,0}{arq fisica}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{ArqFisica.png}
+  \caption{Arquitectura física.}
+  \label{fig:ArqFisica}
+\end{figure}
 
 
 \section{Arquitectura Lógica}
 
 
-A arquitectura lógica é dividida em duas grandes partes: o Beacon e o Central.
+A arquitectura lógica é dividida em duas grandes partes: o \cname{Beacon} e o \cname{Central}. Esta divisão segue um paradigma de cliente-servidor, onde o \cname{Beacon} é o cliente e o \cname{Central} é o servidor. O \cname{Central} foi pensado para seguir uma arquitectura \nname{Event-driven}.
 
-\textcolor[rgb]{1,0,0}{ArqLogica}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{ArqLogica.png}
+  \caption{Arquitectura lógica.}
+  \label{fig:ArqLogica}
+\end{figure}
 
 \subsection{Beacon}
 
 
-O Beacon divide-se em três pacotes: o Address Manager, o Probe e o Beacon Probe.
+O \cname{Beacon} divide-se em três pacotes: o \cname{Address Manager}, o \cname{Probe} e o \cname{Beacon Probe}.
 
 \subsubsection{Address Manager}
 
 
-O Address Manager é responsável pela comunicação com o Central. Isto passa por:
+O \cname{Address Manager} é responsável pela comunicação com o Central. Isto passa por:
 \begin{itemize}
-\item Avisar o Central do início e do fim de uma sessão de funcionamento do Beacon,
-\item Receber os pedidos de monitorização de Rovers e Beacons enviados pelo Central e criar um Probe ou Beacon Probe, respectivamente, para cada um dos monitorizados,
-\item Avisar o Central do início e fim de ligação com um Rover ou Beacon,
-\item Enviar as medições de RSSI\_ACL recolhidas pelos Probes.
+\item Avisar o \cname{Central} do início e do fim de uma sessão de funcionamento do Beacon,
+\item Receber os pedidos de monitorização de Rovers e Beacons enviados pelo \cname{Central} e criar um \cname{Probe} ou \cname{Beacon Prob}e, respectivamente, para cada um dos monitorizados,
+\item Avisar o \cname{Central} do início e fim de ligação com um Rover ou Beacon,
+\item Enviar as medições de RSSI\_ACL recolhidas pelos \cname{Probes}.
 \end{itemize}
 
-A comunicação com o Central é feita através de sockets, trocando informação codificada em texto simples, conforme o protocolo definido (Ver secção \ref{_Ref177154266}).
+A comunicação com o \cname{Central} é feita através de \nname{sockets}, trocando informação codificada em texto simples, conforme o protocolo definido (Ver secção~\ref{ch:solucao:protocolo}).
 
 \subsubsection{Probe}
 
 
-Um Probe é responsável por monitorizar a presença de um Rover em específico, que lhe é dado a conhecer na criação. Isto passa por:
+Um \cname{Probe} é responsável por monitorizar a presença de um Rover em específico, que lhe é dado a conhecer na criação. Isto passa por:
 \begin{itemize}
-\item Tentar-se ligar ao Rover e avisar o Address Manager quando conseguir.
+\item Tentar-se ligar ao Rover e avisar o \cname{Address Manager} quando conseguir.
 \item Enquanto estiver ligado, medir o RSSI\_ACL da ligação.
-\item No fim da ligação, informar o Address Manager.
+\item No fim da ligação, informar o \cname{Address Manager}.
 \end{itemize}
 
-Quando a ligação se perder, o Probe volta a tentar ligar-se ao Rover.
+Quando a ligação se perder, o \cname{Probe} volta a tentar ligar-se ao Rover.
 
 \subsubsection{Beacon Probe}
 
 
-O Beacon Probe é apenas um Probe que tem com objectivo monitorizar um Beacon ao invés de um Rover. Deverão ser feitas as modificações necessárias para tomar partido da menor volatilidade da presença de Beacons.
+O \cname{Beacon Probe} é apenas um \cname{Probe} que tem com objectivo monitorizar um Beacon ao invés de um Rover. Deverão ser feitas as modificações necessárias para tomar partido da menor volatilidade da presença de Beacons.
 
 \subsection{Central}
 
 
-O Central divide-se em quatro pacotes: o Business Entities, o Dispatcher, o Localizer, e o Visualizer.
+O \cname{Central} divide-se em quatro pacotes: o \cname{Business Entities}, o \cname{Dispatcher}, o \cname{Localizer}, e o \cname{Visualizer}.
 
 \subsubsection{Business Entities}
 
 
-As Business Entities são apenas classes que representam as entidades e conceitos envolvidos no processo de localização. Estas classes foram colocadas num pacote à parte porque são as únicas classes a persistir em base de dados. Algumas destas classes contêm um campo chamado Id. Este apenas é usado como chave primária na base de dados. Segue-se a descrição de cada classe. 
+As \cname{Business Entities} são apenas classes que representam as entidades e conceitos envolvidos no processo de localização.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{BEs.png}
+  \caption{Diagrama de classes do pacote \cname{Business Entities}.}
+  \label{fig:BEs}
+\end{figure}
+
+Estas classes foram colocadas num pacote à parte porque são as únicas classes a persistir em base de dados. Algumas destas classes contêm um campo chamado \cname{Id}. Este apenas é usado como chave primária na base de dados. Segue-se a descrição de cada classe. 
 
 \paragraph{Bluetooth Address}
 
@@ -78,32 +98,32 @@ Representa um endereço BT. Um endereço BT é constituído por 6 bytes.
 \paragraph{Device}
 
 
-Classe abstracta que representa um dispositivo BT. Contém um Bluetooth Address e informações genéricas das propriedades do \emph{chipset} do dispositivo. A propriedade Is A Beacon é abstracta e deverá devolver verdadeiro caso o objecto represente um Beacon.
+Classe abstracta que representa um dispositivo BT. Contém um \cname{Bluetooth Address} e informações genéricas das propriedades do \foreign{chipset} do dispositivo. A propriedade \cname{Is A Beacon} é abstracta e deverá devolver verdadeiro caso o objecto represente um Beacon.
 
 \paragraph{Rover}
 
 
-Descendente de Device, representa um Rover. A propriedade Registry Date contém a data em que o dispositivo foi registado. A colecção Links contém todas as ligações em que o Rover participou.
+Descendente de \cname{Device}, representa um Rover. A propriedade \cname{Registry Date} contém a data em que o dispositivo foi registado. A colecção \cname{Links} contém todas as ligações em que o Rover participou.
 
 \paragraph{Beacon}
 
 
-Descendente de Device, representa um Beacon. Contém uma Position que representa a posição do Beacon. As propriedades X e Y são apenas chamadas às mesmas no objecto Position contido. A colecção Sessions contém todas as sessões de funcionamento do Beacon.
+Descendente de \cname{Device}, representa um Beacon. Contém uma \cname{Position} que representa a posição do Beacon. As propriedades \cname{X} e \cname{Y} são apenas chamadas às mesmas no objecto \cname{Position} contido. A colecção \cname{Sessions} contém todas as sessões de funcionamento do Beacon.
 
 \paragraph{Position}
 
 
-Representa uma posição num sistema de dois eixos. As propriedades X e Y são os valores no primeiro e segundo eixo, respectivamente.
+Representa uma posição num sistema de dois eixos. As propriedades \cname{X} e \cname{Y} são os valores no primeiro e segundo eixo, respectivamente.
 
 \paragraph{Session}
 
 
-Representa uma sessão de funcionamento de um Beacon. Contém o Beacon a que a sessão se refere, o conjunto das ligações que esse Beacon efectuou (representado pela colecção Links), e as datas e horas de início e fim.
+Representa uma sessão de funcionamento de um Beacon. Contém o \cname{Beacon} a que a sessão se refere, o conjunto das ligações que esse Beacon efectuou (representado pela colecção \cname{Links}), e as datas e horas de início e fim.
 
 \paragraph{Link}
 
 
-Representa uma ligação de um Beacon a um dispositivo BT. Contém as datas e horas de início e fim da ligação, a sessão sob a qual foi estabelecida, o dispositivo a que foi feita a ligação, e o conjunto de leituras efectuadas na ligação (representado pela colecção Readings).
+Representa uma ligação de um Beacon a um dispositivo BT. Contém as datas e horas de início e fim da ligação, a sessão sob a qual foi estabelecida, o dispositivo a que foi feita a ligação, e o conjunto de leituras efectuadas na ligação (representado pela colecção \cname{Readings}).
 
 \paragraph{Reading}
 
@@ -113,47 +133,60 @@ Classe abstracta que representa uma medição genérica. Contém a ligação, data e h
 \paragraph{RssiAcl}
 
 
-Descendente de Reading, representa uma medição de RSSI\_ACL. Contém o valor da medição.
+Descendente de \cname{Reading}, representa uma medição de RSSI\_ACL. Contém o valor da medição.
 
 \subsubsection{Dispatcher}
+O pacote \cname{Dispatcher} é responsável pela comunicação com o pacote \cname{Beacon}, comunicar com a base de dados, e avisar os interessados das leituras feitas pelos Beacons.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{Dispatcher.png}
+  \caption{Diagrama de classes do pacote \cname{Dispatcher}.}
+  \label{fig:Dispatcher}
+\end{figure}
 
-O pacote Dispatcher é responsável pela comunicação com o Beacon, comunicar com a base de dados, e avisar os interessados das leituras feitas pelos Beacons.
-
-A comunicação com o Beacon é feita através de sockets, trocando informação codificada em texto simples, conforme o protocolo definido (Ver secção \ref{_Ref177154266}). Para interpretar e validar a sequência das mensagens recebidas, usa-se uma máquina de estados, implementada na classe Protocol Talker\footnote{ A descrição do funcionamento do Protocol Talker está na secção 5.3.}. Cada instância de Protocol Talker contém um Repository e, com recurso aos métodos deste, manipula objectos do pacote Business Entities para representar a informação que recebe dos Beacons. O Repository é responsável pela persistência da informação em base de dados e proporciona três eventos para que interessados em novas informações possam ser notificados. Os eventos são o início e fim de ligações e as medições efectuadas\footnote{ O evento de medição efectuada, para ser correcto, deveria conter um objecto Reading. Por uma questão de simplicidade de implementação, sabendo que todas as medições serão de RSSI\_ACL, é passado directamente o valor da medição ao invés do objecto.}. A persistência em base de dados é feita com recurso à \emph{framework} \emph{NHibernate}. A informação persistida é constituída por instâncias das classes do pacote Business Entities.
+A comunicação com o \cname{Beacon} é feita através de \nname{sockets}, trocando informação codificada em texto simples, conforme o protocolo definido (Ver secção~\ref{ch:solucao:protocolo}). Para interpretar e validar a sequência das mensagens recebidas, usa-se uma máquina de estados, implementada na classe \cname{Protocol Talker}\footnote{A descrição do funcionamento do \cname{Protocol Talker} está na secção~\ref{ch:implementacao:machine}.}. Cada instância de \cname{Protocol Talker} contém um \cname{Repository} e, com recurso aos métodos deste, manipula objectos do pacote \cname{Business Entities} para representar a informação que recebe dos Beacons. O \cname{Repository} é responsável pela persistência da informação em base de dados e proporciona três eventos para que interessados em novas informações possam ser notificados. Os eventos são o início e fim de ligações e as medições efectuadas\footnote{O evento de medição efectuada, para ser correcto, deveria conter um objecto \cname{Reading}. Por uma questão de simplicidade de implementação, sabendo que todas as medições serão de RSSI\_ACL, é passado directamente o valor da medição ao invés do objecto.}. A persistência em base de dados é feita com recurso à \foreign{framework} \nname{NHibernate}. A informação persistida é constituída por instâncias das classes do pacote \cname{Business Entities}. O interesse principal de ter persistência das informações neste sistema é poder fazer análises \foreign{à posteriori} com facilidade.
 
 \subsubsection{Localizer}
+O \cname{Localizer} é responsável por tentar deduzir as posições dos Rovers.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{Localizer.png}
+  \caption{Localizer.png}
+  \caption{Diagrama de classes do pacote \cname{Localizer}.}
+\end{figure}
 
-O Localizer é responsável por tentar deduzir as posições dos Rovers.
+A classe central deste pacote é a \cname{DonutLocalizer}. Esta classe subscreve os eventos lançados pelo \cname{Repository} e manipula os objectos das classes deste pacote para representar o estado do mundo. Contém objectos \cname{Ruler} e \cname{Donut}, que são as bases das estimativas efectuadas.
 
-A classe central deste pacote é a DonutLocalizer. Esta classe subscreve os eventos lançados pelo Repository e manipula os objectos das classes deste pacote para representar o estado do mundo. Contém objectos Ruler e Donut, que são as bases das estimativas efectuadas.
+A classe \cname{Ruler} simboliza uma ``régua''\footnote{ O conceito de ``régua'' foi explicado na secção 4.2.}. Contém os \cname{Beacons} de origem e destino da ``régua'' e as medições de RSSI\_ACL efectuadas nessa ligação.
 
-A classe Ruler simboliza uma ``régua''\footnote{ O conceito de ``régua'' foi explicado na secção 4.2.}. Contém os Beacons de origem e destino da ``régua'' e as medições de RSSI\_ACL efectuadas nessa ligação.
+A classe \cname{Donut} representa o anel da estimativa da posição de um Rover em relação a um Beacon. Contém o \cname{Beacon} que efectuou a estimativa (que é o centro do anel), o \cname{PositionedRover} a que a estimativa se aplica, a área da estimativa e as medições de RSSI\_ACL que apoiam a dedução do anel.
 
-A classe Donut representa o anel da estimativa da posição de um Rover em relação a um Beacon. Contém o Beacon que efectuou a estimativa (que é o centro do anel), o PositionedRover a que a estimativa se aplica, a área da estimativa e as medições de RSSI\_ACL que apoiam a dedução do anel.
+A classe \cname{PositionedRover} represente o mesmo que a classe \cname{Rover} acrescida da estimativa actual da posição do Rover que representa. A estimativa é representada na área onde se espera que o Rover esteja e a posição do centro geométrico dessa área. Esta área é a intersecção de todos os anéis calculados pelos Beacons.
 
-A classe PositionedRover represente o mesmo que a classe Rover acrescida da estimativa actual da posição do Rover que representa. A estimativa é representada na área onde se espera que o Rover esteja e a posição do centro geométrico dessa área. Esta área é a intersecção de todos os anéis calculados pelos Beacons.
-
-As áreas são representadas por objectos da classe BinaryMap. O funcionamento desta classe é explicado na secção \ref{_Ref177195931}.
+As áreas são representadas por objectos da classe \cname{BinaryMap}. O funcionamento desta classe é explicado na secção \ref{ch:implementacao:binarymap}.
 
 \subsubsection{Visualizer}
+O pacote \cname{Visualizer} é responsável por mostrar ao utilizador a informação deduzida pelo \cname{Localizer}.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=106mm]{Visualizer.png}
+  \caption{Diagrama de classes do pacote \cname{Visualizer}.}
+  \label{fig:Visualizer}
+\end{figure}
 
-\textcolor[rgb]{1,0,0}{ClassDiagram1}
+A classe \cname{MapPanel} é um painel responsável por desenhar no ecrã as posições deduzidas. Para isto, pede à classe \cname{Localizer} todos os objectos \cname{PositionedRover} e \cname{Beacon}, transforma-os em \cname{PaintablePositionedRover} e \cname{PaintableBeacon} (respectivamente), e delega o desenho dos objectos aos mesmos.
 
-O pacote Visualizer é responsável por mostrar ao utilizador a informação deduzida pelo Localizer.
-
-A classe MapPanel é um painel responsável por desenhar no ecrã as posições deduzidas. Para isto, pede à classe Localizer todos os objectos PositionedRover e Beacon, transforma-os em PaintablePositionedRover e PaintableBeacon (respectivamente), e delega o desenho dos objectos aos mesmos.
-
-A classe PaintablePositionedRover e PaintableBeacon, derivadas de PositionedRover e Beacon (respectivamente), adicionam apenas a capacidade do objecto se desenhar.
+A classe \cname{PaintablePositionedRover} e \cname{PaintableBeacon}, derivadas de \cname{PositionedRover} e \cname{Beacon} (respectivamente), adicionam apenas a capacidade do objecto se desenhar.
 
 \section{Protocolo de comunicação Beacon -- Central}
-\label{_Ref177154266}
+\label{ch:solucao:protocolo}
 
 O protocolo de comunicação Beacon -- Central tem dois grandes propósitos, informar o Central das medidas efectuadas pelos Beacons e informar os Beacon quais os dispositivos a procurar. As mensagens trocadas são em texto simples.
 
-\subsection{Sinalização do início e fim de sessão}
+\subsection*{Sinalização do início e fim de sessão}
 
 
 O Beacon informa o Central quando começa ou acaba a sessão de funcionamento.
@@ -167,34 +200,33 @@ Uma mensagem de fim de funcionamento tem a forma de:
 \begin{center}
 {\scriptsize 11806351052549630 00:14:85:96:8B:11 BYE}
 \end{center}
-\begin{flushleft}
-``{11806347792159490}'' é o \emph{timestamp}\emph{\footnote{ Estes timestamps tomam a mesma forma que a propriedade Ticks da classe DateTime de .NET.}} em que a mensagem foi enviada.
-\end{flushleft}
+
+``{11806347792159490}'' é o \foreign{timestamp}\footnote{Estes timestamps tomam a mesma forma que a propriedade Ticks da classe DateTime de .NET.} em que a mensagem foi enviada.
 
 ``{00:14:85:96:8B:12}'' é o endereço BT do Beacon.
 
-\subsection{Sinalização dos dispositivos a procurar}
+\subsection*{Sinalização dos dispositivos a procurar}
 
 
 Quando um Beacon inicia uma sessão, o Central informa-o dos dispositivos que deve procurar. Isto é feito enviando várias mensagens de endereço, uma para cada dispositivo a ser procurado.
 
 Uma mensagem de endereço de um Rover a procurar tem a forma de:
 \begin{center}
-11806095134787740 ROVER  {\scriptsize 00:12:D1:CB:A9:5A}
+{\scriptsize 11806095134787740 ROVER   00:12:D1:CB:A9:5A}
 \end{center}
 
 Uma mensagem de endereço de um Beacon a procurar tem a forma de:
 \begin{center}
-11806095141957640 BEACON {\scriptsize 00:14:85:96:8B:12}
+{\scriptsize 11806095141957640 BEACON  00:14:85:96:8B:12}
 \end{center}
 
-``{11806347792159490}'' é o \emph{timestamp} em que a mensagem foi enviada. 
+``{11806347792159490}'' é o \foreign{timestamp} em que a mensagem foi enviada. 
 
 ``{BEACON'' ou ``ROVER}'' indica se o endereço se trata de um Beacon ou um Rover, respectivamente.
 
 ``{00:14:85:96:8B:12}'' é o endereço do dispositivo que deve ser procurado.
 
-\subsection{Sinalização de ligações e medições}
+\subsection*{Sinalização de ligações e medições}
 
 
 O Beacon informa o Central quando é iniciada ou terminada uma ligação com outro dispositivo e quando são efectuada medidas numa ligação.
@@ -208,7 +240,7 @@ Uma mensagem de início de ligação tem a forma de:
 
 Uma mensagem de fim de ligação tem a forma de:
 \begin{center}
-{\scriptsize 11806348112761370}{\scriptsize  }{\scriptsize 00:14:85:96:8B:12 00:12:D1:CB:A9:5A END LINK}
+{\scriptsize 11806348112761370 00:14:85:96:8B:12 00:12:D1:CB:A9:5A END LINK}
 \end{center}
 
 Uma mensagem de medição tem a forma de:
@@ -216,13 +248,16 @@ Uma mensagem de medição tem a forma de:
 {\scriptsize 11806348103457710 00:14:85:96:8B:12 00:12:D1:CB:A9:5A RSSI ACL -26}
 \end{center}
 
-``{11806347792159490}'' é o \emph{timestamp} em que a mensagem foi enviada. 
+``{11806347792159490}'' é o \foreign{timestamp} em que a mensagem foi enviada. 
 
 ``{00:14:85:96:8B:12}'' é o endereço BT do Beacon. 
 
 ``{00:12:D1:CB:A9:5A}'' é o endereço BT do dispositivo do outro lado da ligação.
 
 ``{-26}'' é o valor da medida retirada.
+
+\section{Resumo e Conclusões}
+Foi apresentado um desenho simples para colheita e análise de medições de RSSI\_ACL. É uma arquitecura tipica cliente-servidor, com forte influência do estilo \foreign{Event-driven} no lado do servidor. É previsto que os dados recolhidos sejam armazenados em base de dados para análises \foreign{à posteriori} das medições colhidas.
 
 %$\ll$20 páginas sugeridas
 %\vspace*{\baselineskip}

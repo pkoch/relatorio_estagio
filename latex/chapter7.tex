@@ -1,17 +1,16 @@
 %  Last modified on  Wed May 24 17:51:57 2006
 
 \chapter{Resultados, Avaliação e Trabalho Futuro}
-
-
-Neste ca-pí-tu-lo se-rá exposto o funcionamento comum do pro-tó-ti-po desenvolvido, se-rão avaliados os resultados do mesmo e se-rão feitas propostas de trabalho futuro.
+\label{ch:resultados}
+Neste capítulo será exposto o funcionamento comum do protótipo desenvolvido, serão avaliados os resultados do mesmo e serão feitas propostas de trabalho futuro.
 
 \section{Funcionamento típico do protótipo desenvolvido}
 
 
-Nesta secção se-rá retratado o funcionamento típico do pro-tó-ti-po desenvolvido. Começaremos pela ins-ta-la-ção das componentes fí-si-cas, pelos procedimentos de ``arranque'', passando pelo funcionamento pleno de todo o sistema até ao comportamento das de-du-ções efectuadas.
+Nesta secção será retratado o funcionamento típico do protótipo desenvolvido. Começa-remos pela instalação das componentes físicas, pelos procedimentos de ``arranque'', passando pelo funcionamento pleno de todo o sistema até ao comportamento das deduções efectuadas.
 
 \subsection{Instalação e Arranque}
-\label{_Ref177923737}
+\label{ch:resultados:instalacao}
 
 O primeiro aspecto a ter em mente é o sítio que cada Beacon terá. Estes devem estar dispostos de modo a que todas as posições a monitorizar estejam cobertas pelo alcance de, pelo menos, três Beacons.
 
@@ -21,9 +20,9 @@ Inserir figura de bom posicionamento.
 
 A próxima preocupação é como dispor os Beacons em si, tanto o dispositivo BT como o anfitrião do mesmo\footnote{ Como explicado em 5.1, um Beacon como um todo é constituído pelo dispositivo BT e pela máquina onde este está hospedado.}. O dispositivo BT deve estar no sítio planeado no passo anterior. É preciso aprovisionar sítios para os anfitriões e, talvez, os cabos necessários para ligar os dispositivos BT aos anfitriões (caso a ligação seja USB ou a antena do dispositivo seja externa).
 
-Tendo os Beacons dispostos e instalados, falta ligá-los a uma rede \emph{Ethernet}. Aqui, o maior inconveniente é ter de evitar o uso de WiFi. WiFi usa a mesma banda de frequências que o BT e pode interferir na localização, logo o seu uso deve ser minimizado.
+Tendo os Beacons dispostos e instalados, falta ligá-los a uma rede \nname{Ethernet}. Aqui, o maior inconveniente é ter de evitar o uso de WiFi. WiFi usa a mesma banda de frequências que o BT e pode interferir na localização, logo o seu uso deve ser minimizado.
 
-O próximo passo é ligar o Central à rede \emph{ehternet} e arrancar o programa desta parte do sistema. Durante o arranque, o Central envia para o \emph{stdout} o endereço IP e porta TCP aonde vai esperar que os Beacons se liguem. O passo seguinte é correr o binário que contém a parte do Beacon do sistema em cada um dos Beacons, dando como argumento o IP e a porta TCP do Central.
+O próximo passo é ligar o Central à rede \nname{Ehternet} e arrancar o programa desta parte do sistema. Durante o arranque, o Central envia para o \nname{stdout} o endereço IP e porta TCP aonde vai esperar que os Beacons se liguem. O passo seguinte é correr o binário que contém a parte do Beacon do sistema em cada um dos Beacons, dando como argumento o IP e a porta TCP do Central.
 
 Nesta altura, os Beacons começam o diálogo com o Central. Primeiro avisam que começaram uma sessão de funcionamento. Não muito depois, os Beacons devem começar a tirar medições de RSSI\_ACL da força de sinal com que se ``vêem'' uns aos outros, informando o Central dos valores.
 
@@ -57,6 +56,9 @@ No fim da implementação, o estagiário sente que há dois campos que merecem atenç
 O actual método de dedução da localização não considera a referida natureza logarítmica do andamento. Aqui, a solução mais simples é, durante a execução, efectuar a regressão logarítmica e determinar a função inversa. Com isto, temos um sistema de dedução da posição simples. O maior risco desta aproximação é o impacto do erro. Tento em conta que se trata duma função exponencial, é previsível que as margens de dúvida aumentem bastante.
 
 Em relação à comunicação com o HCI, o estagiário considera que já houve demasiados enganos e mal entendidos no uso da framework. Tendo em conta que se adquiriu bastante experiência na interacção com o HCI, apostar em não usar nenhuma abstracção resultará num controlo preciso. Há só que considerar que a carga de trabalho aumenta bastante. 
+
+\section{Resumo e Conclusões}
+Alem de explicado o processo típico de instalação e funcionamento do protótipo desenvolvido, neste capítulo conclui-se que o método explicado na secção~\ref{ch:investigacao:relacao} produz resultados, mas muito pouco satisfatórios. O sistema é capaz, em situações muito especificas de, de facto, deduzir a posição de um Rover. É proposto que seja usado um sistema que efectua regressão exponencial, actualizada constantemente durante a execução.
 
 %$\ll$5 páginas sugeridas
 %\vspace*{\baselineskip}

@@ -1,32 +1,36 @@
 %  Last modified on   Fri May 19 09:58:40 2006
 
 \chapter{Estado da Arte e Trabalho Relacionado}
-\label{_Ref177384090}
+\label{ch:sota}
 
 Neste capítulo é dado a conhecer o estado da arte, a maneira como outros tentaram resolver este mesmo problema e quais os resultados a que chegaram. De todos os artigos relevantes, são destacados aqueles que documentam métodos e/ou aferições de forma concreta.
 
+\section{Trabalho anterior}
 Há alguma documentação sobre tentativas de resolução do problema em questão. Maior parte dela descreve o sucesso de um método usado, mas não descreve o método em si. No entanto, há quatro artigos que se destacam por não obedecerem a essa corrente.
 
-Em [BluetoothTri] tentaram usar trilateração simples apoiando-se no RSSI de BT e falharam. Adaptaram uma solução que passou por usar hardware específico. Em [udana-rawcon-04] discute-se como usar o RSSI mas recorrendo a hardware exótico. Ambos estes casos são interessantes porque acabam por concluir que, sem recurso a \emph{hardware} específico, não conseguem deduzir posições apoiando-se no RSSI.
+Em \cite{BluetoothTri} tentaram usar trilateração simples apoiando-se no RSSI de BT e falharam. Adaptaram uma solução que passou por usar hardware específico. Em \cite{udana-rawcon-04} discute-se como usar o RSSI mas recorrendo a hardware exótico. Ambos estes casos são interessantes porque acabam por concluir que, sem recurso a \foreign{hardware} específico, não conseguem deduzir posições apoiando-se no RSSI.
 
-Em [Indoor\_location\_Systems] fala-se sobre um produto comercial. No artigo analisam-se os vários métodos de localização e várias escolhas tecnológicas, entre estas BT. BT acaba por sobressair, sobretudo pela forte presença em dispositivos pessoais. A solução adoptada foi um misto de infravermelhos com BT. São apresentados os resultados conseguidos com o produto mas não são explicados os detalhes de implementação, pelo que não se consegue deduzir a ``mecânica'' da solução. Ainda assim, este artigo apresenta um bom comparativo de técnicas e tecnologias.
+Em \cite{IndoorLocationSystems} fala-se sobre um produto comercial. No artigo analisam-se os vários métodos de localização e várias escolhas tecnológicas, entre estas BT. BT acaba por sobressair, sobretudo pela forte presença em dispositivos pessoais. A solução adoptada foi um misto de infravermelhos com BT. São apresentados os resultados conseguidos com o produto mas não são explicados os detalhes de implementação, pelo que não se consegue deduzir a ``mecânica'' da solução. Ainda assim, este artigo apresenta um bom comparativo de técnicas e tecnologias.
 
-Em [2005-ubicomp-bluetooth] é documentada uma tentativa de construir um sistema de localização baseado na análise do BER. É usado o sistema \emph{Active }\emph{Bat} [WP:ActiveBat] para recolher a posição real. Concluíram que, embora haja alguma relação entre o BER e a distância, não é suficiente para medir a distância.
+Em \cite{2005-ubicomp-bluetooth} é documentada uma tentativa de construir um sistema de localização baseado na análise do BER. É usado o sistema \nname{Active Bat} \cite{WP:ActiveBat} para recolher a posição real. Concluíram que, embora haja alguma relação entre o BER e a distância, não é suficiente para medir a distância.
 
-Ainda de destacar, há algumas informações sobre um grupo de trabalho sob a alçada da \emph{Bluetooth Special Interest Group} para desenvolver um sistema de posicionamento local [WP:BluetoothSpecialInterestGroup]. No entanto, não se conseguiu encontrar nenhuma informação sobre o trabalho desenvolvido por este grupo.
+Ainda de destacar, há algumas informações sobre um grupo de trabalho sob a alçada da \nname{Bluetooth Special Interest Group} para desenvolver um sistema de posicionamento local \cite{WP:BluetoothSpecialInterestGroup}. No entanto, não se conseguiu encontrar nenhuma informação sobre o trabalho desenvolvido por este grupo.
 
 Com as restrições do problema a ser resolvido, tendo em conta que a pesquisa levada a cabo só encontrou estes quatro artigos relevantes, pode-se dizer com bastante ``à vontade'' que ainda não é conhecida nenhuma solução provada e bem documentada.
 
 \section{Áreas circundantes: WiFi }
 
+Na variação WiFi do problema, há algum trabalho já estabelecido. Mesmo em artigos sobre localização com BT, é muito referido um trabalho da \nname{Microsoft}: o RADAR \cite{MS:RADAR}.
 
-Na variação WiFi do problema, há algum trabalho já estabelecido. Mesmo em artigos sobre localização com BT, é muito referido um trabalho da Microsoft: o RADAR [MS:RADAR].
+O RADAR é um sistema de radiolocalização para sistemas de ambientes reactivos\footnote{ Um sistema de ambiente reactivo é aquele que tem informação sobre o meio e age com base nela. Por exemplo, um telemóvel entrar em modo de silêncio cada vez que entra numa sala de reuniões \cite{WP:ContextAwareness}.}. Usa WiFi como tecnologia de base. O principal intuito é descobrir a posição do sujeito para descobrir que recursos IP se encontram perto deste. Por exemplo, descobrir que impressora IP se encontra mais perto do sujeito. Há uma demonstração em \cite{MS:RADARDemo}.
 
-O RADAR é um sistema de radiolocalização para sistemas de ambientes reactivos\footnote{ Um sistema de ambiente reactivo é aquele que tem informação sobre o meio e age com base nela. Por exemplo, um telemóvel entrar em modo de silêncio cada vez que entra numa sala de reuniões. [WP:ContextAwareness]}. Usa WiFi como tecnologia de base. O principal intuito é descobrir a posição do sujeito para descobrir que recursos IP se encontram perto deste. Por exemplo, descobrir que impressora IP se encontra mais perto do sujeito. Há uma demonstração em [MS:RADARDemo].
-
-Tendo em conta que WiFi é uma tecnologia muito presente em dispositivos \emph{Windows Mobile} (o principal alvo a atingir), se redefinirmos o problema, substituindo o uso de BT por WiFi, o sistema RADAR é uma prova concreta de exequibilidade.
+Tendo em conta que WiFi é uma tecnologia muito presente em dispositivos \nname{Windows Mobile} (o principal alvo a atingir), se redefinirmos o problema, substituindo o uso de BT por WiFi, o sistema RADAR é uma prova concreta de exequibilidade.
 
 O maior problema em usar WiFi é o elevado consumo de bateria. Com a cada vez maior banalização do uso de periféricos BT (principalmente auriculares), é muito comum que os utilizadores tenham o BT ligado a maior parte do tempo. Se a solução desenvolvida apenas precisar que o utilizador tenha o BT ligado, é possível capitalizar este crescendo de dispositivos BT ligados.
+
+
+\section{Resumo e Conclusões}
+Foi encontrado muito pouco trabalho anterior que obdecesse aos requisitos impostos na formulação do problema. Mesmo tendo o uso de WiFi como alternativa, o consumo compulsivo de bateria por parte do WiFi torna essa opção muito pouco atraente.
 
 %$\ll$15 páginas sugeridas
 %\vspace*{\baselineskip}
