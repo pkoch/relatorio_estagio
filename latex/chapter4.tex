@@ -5,14 +5,14 @@
 
 Neste capítulo, será apresentada a investigação levada a cabo para testar as várias hipóteses apresentadas até agora. São explicadas as premissas iniciais e os processos e deduções que levaram até à hipótese final.
 
-\section{Escolha da medida usada}
+\section{Escolha da Medida Usada}
 
 
-Tendo em conta a análise feita na secção \ref{ch:problema:radiolocalizacao}, por exclusão de hipóteses, podemos dizer que a solução terá que se apoiar no \foreign{Transmit Power}, ou no \foreign{Link Quality} ou no RSSI\_ACL. Outra hipótese seria o RSSI, caso encontrássemos equipamentos onde este não estivesse bem implementado\footnote{Como explicado na secção~\ref{ch:problema:alteracoes}, na espeficicação de BT, o RSSI não está definido como indicador da força de sinal. No entanto, pode haver um fabricante que, à revelia da especificação, possa ter implementado a medida como indicador da força de sinal.}. Na última das hipóteses, temos extensões proprietárias ao HCI.
+Tendo em conta a análise feita na Secção \ref{ch:problema:radiolocalizacao}, por exclusão de hipóteses, podemos dizer que a solução terá que se apoiar no \foreign{Transmit Power}, no \foreign{Link Quality} ou no RSSI\_ACL. Outra hipótese seria o RSSI, caso encontrássemos equipamentos onde este não estivesse bem implementado\footnote{Como explicado na Secção~\ref{ch:problema:alteracoes}, na espeficicação de BT, o RSSI não está definido como indicador da força de sinal. No entanto, pode haver um fabricante que, à revelia da especificação, possa ter implementado a medida como indicador da força de sinal.}. Na última das hipóteses, temos extensões proprietárias ao HCI.
 
-O pensamento adoptado foi estritamente pessimista. Tentou-se provar, em primeiro lugar, que nenhuma das hipóteses funcionava. Se a prova falhasse, então é porque existiria uma hipótese que poderia funcionaria. Para ser considerada válida, uma hipótese de relação entre uma medida e a distância teria de o ser de forma bastante óbvia e/ou forte. As condições de teste são, em princípio, melhores\footnote{Durante a aplicação prática da solução, as condições não serão controladas de todo. Poderão haver outros equipamentos que introduzam interferências no sinal, o movimento de muitas pessoas pode condicionar as transmissões de sinais, etc\ldots} do que as condições de uma aplicação prática da solução. Logo, se a relação não for óbvia/forte, tenderá a desaparecer à medida que as condições pioram.
+O pensamento adoptado foi estritamente pessimista. Tentou-se provar, em primeiro lugar, que nenhuma das hipóteses funcionava. Se a prova falhasse, então é porque existiria uma hipótese que poderia funcionaria. Para ser considerada válida, uma hipótese de relação entre uma medida e a distância teria de o ser de forma bastante óbvia e/ou forte. As condições de teste são, em princípio, melhores\footnote{Durante a aplicação prática da solução, as condições não serão controladas de todo. Poderão haver outros equipamentos que introduzam interferências no sinal, o movimento de muitas pessoas pode condicionar as transmissões de sinais, etc\@\ldots} do que as condições de uma aplicação prática da solução. Logo, se a relação não for óbvia/forte, tenderá a desaparecer à medida que as condições pioram.
 
-\subsection{Testes das medidas}
+\subsection{Testes das Medidas}
 Para tentar negar as hipóteses, recolheu-se amostras destas 4 medidas ao longo de várias distâncias. O objectivo era simular um ambiente em que houvesse apenas um Beacon e um Rover e observar o comportamento das medidas. Como Beacon, foram usados dispositivos de classe 1 (alcance de 100 metros) de dois fabricantes diferentes, \nname{Broadcom }e \nname{Cambridge Silicon Rádio} (também conhecida pelo seu acrónimo, CSR). Como Rover, tínhamos vários dispositivos \nname{Windows Mobile} diferentes, todos fabricados pela \nname{HTC}.
 
 \subsubsection{Método}
@@ -23,12 +23,12 @@ Com este sistema, tendo o Beacon numa posição, tiram-se amostras de posições con
 \subsubsection{Resultados}
 
 
-De seguida, são apresentados os resultados das amostras retiradas. Estes mantêm-se bastante iguais, independentemente do dispositivo usado como Rover, pelo que será apresentado o resultado das amostras retiradas com um PDA \nname{HTC TyTN}. Os gráficos têm no eixo do $x$ a distância entre o Rover e o Beacon e no do $y$ o valor das medições. Neste, é apresentada uma barra com um ponto. O ponto significa a média e a barra simboliza a média somada e subtraída do desvio padrão.
+De seguida, são apresentados os resultados das amostras retiradas. Estes mantêm-se bastante iguais, independentemente do dispositivo usado como Rover, pelo que será apresentado o resultado das amostras retiradas com um PDA \nname{HTC TyTN}. Os gráficos têm no eixo do $x$ a distância entre o Rover e o Beacon e no do $y$ o valor das medições sob a forma de uma barra com um ponto. O ponto significa a média e a barra simboliza a média somada e subtraída do desvio padrão.
 
 \paragraph{CSR}
 
 
-Conforme se pode facilmente observar nas figuras~\ref{fig:G5LQ}, \ref{fig:G5RSSI} e \ref{fig:G5TXP}, nenhuma destas medidas do dispositivo com o \foreign{chipset} da CSR está correlacionada com a distância.
+Conforme se pode facilmente observar nas Figuras~\ref{fig:G5LQ}, \ref{fig:G5RSSI} e \ref{fig:G5TXP}, nenhuma destas medidas do dispositivo com o \foreign{chipset} da CSR está correlacionada com a distância.
 
 \begin{figure}[t]
   \centering
@@ -52,7 +52,7 @@ Conforme se pode facilmente observar nas figuras~\ref{fig:G5LQ}, \ref{fig:G5RSSI
 \end{figure}
 
 
-Na figura~\ref{fig:RSSIACL}, o RSSI\_ACL demonstra claramente uma relação logarítmica com a distância e a variação em cada distância não é muito considerável. Com base nestas características, embora não seja possível fazer um relacionamento de causa-efeito, esta medida parece ser um bom indicador da distância entre os dispositivos.
+Na Figura~\ref{fig:RSSIACL}, o RSSI\_ACL demonstra claramente uma relação logarítmica com a distância e a variação em cada distância não é muito considerável. Com base nestas características, embora não seja possível fazer um relacionamento de causa-efeito, esta medida parece ser um bom indicador da distância entre os dispositivos.
 
 \begin{figure}[t]
   \centering
@@ -65,7 +65,7 @@ Na figura~\ref{fig:RSSIACL}, o RSSI\_ACL demonstra claramente uma relação logarí
 \paragraph{Broadcom}
 
 
-No \foreign{chipset} da \nname{Broadcom}, o RSSI (figura~\ref{fig:A5RSSI}) aparenta ter alguma relação com a distância. No entanto, esta medida tem um comportamento, no mínimo, irregular e difícil de prever. Tendo em conta a irregularidade desta medida e que não foi encontrada documentação sobre o comportamento da mesma\footnote{ Ainda se entrou em contacto com a \nname{Broadcom}, mas estes disseram que não estavam interessados em cooperar.}, foi abandonada a hipótese de a usar. 
+No \foreign{chipset} da \nname{Broadcom}, o RSSI (Figura~\ref{fig:A5RSSI}) aparenta ter alguma relação com a distância. No entanto, esta medida tem um comportamento, no mínimo, irregular e difícil de prever. Tendo em conta a irregularidade desta medida e também porque que não foi encontrada documentação sobre o comportamento da mesma\footnote{ Ainda se entrou em contacto com a \nname{Broadcom}, mas estes disseram que não estavam interessados em cooperar.}, foi abandonada a hipótese de a usar. 
 \begin{figure}[t]
   \centering
   \includegraphics[width=106mm]{bts_compact_a5_rssi.PNG}
@@ -73,7 +73,7 @@ No \foreign{chipset} da \nname{Broadcom}, o RSSI (figura~\ref{fig:A5RSSI}) apare
   \label{fig:A5RSSI}
 \end{figure}
 
-A medida \foreign{Link Quality} (figura~\ref{fig:A5LQ}) também evidencia alguma relação com a distância. No entanto a variação das medições tende a ser mínima. Contudo, para distâncias diferentes temos valores iguais com variações mínimas, o que impossibilita a distinção entre estas duas distância. Logo, considerou-se a medida inapta.
+A medida \foreign{Link Quality} (Figura~\ref{fig:A5LQ}) também evidencia alguma relação com a distância. No entanto a variação das medições tende a ser mínima. Contudo, para distâncias diferentes temos valores iguais com variações mínimas, o que impossibilita a distinção entre estas duas distâncias. Logo, considerou-se a medida inapta.
 \begin{figure}[t]
   \centering
   \includegraphics[width=106mm]{bts_compact_a5_lq.PNG}
@@ -81,7 +81,7 @@ A medida \foreign{Link Quality} (figura~\ref{fig:A5LQ}) também evidencia alguma 
   \label{fig:A5LQ}
 \end{figure}
 
-A medida \foreign{Transmit Power} (figura~\ref{fig:A5TXP})apresenta uma reduzidíssima relação com a distância, evidenciado apenas se o Rover está a menos de 4 metros.
+A medida \foreign{Transmit Power} (Figura~\ref{fig:A5TXP}) apresenta uma reduzidíssima relação com a distância. Esta relação evidencia apenas se o Rover está a menos de 4 metros.
 \begin{figure}[t]
   \centering
   \includegraphics[width=106mm]{bts_compact_a5_txpower.PNG}
@@ -89,21 +89,21 @@ A medida \foreign{Transmit Power} (figura~\ref{fig:A5TXP})apresenta uma reduzidí
   \label{fig:A5TXP}
 \end{figure}
 
-\subsubsection{Avaliação dos resultados}
+\subsubsection{Avaliação dos Resultados}
 \label{ch:investigacao:escolha:avaliacao}
-No fim, a única medida que demonstrou resultados que davam alguma segurança\footnote{É ainda mais fácil de escolher o RSSI\_ACL como medida, porque o comportamento dela está devidamente documentado em \cite{RA:Spec}.} foi a RSSI\_ACL. Esta medida, embora apresente um andamento logarítmico similar em todas as condições sob a forma de $P(x) = \alpha \log(x) + \beta $ , o coeficiente $\beta$ muda consideravelmente conforme as condições atmosféricas. Logo, o comportamento desta medida não é adequado para simplesmente aplicar a função inversa do comportamento observado. Para ultrapassar isto, ao invés de nos apoiarmos na medição de uma ligação Rover -- Beacon, apoiámo-nos na relação entre as medições de várias ligações.
+No fim, a única medida que demonstrou resultados que davam alguma segurança\footnote{É ainda mais fácil de escolher o RSSI\_ACL como medida, porque o comportamento dela está devidamente documentado em \cite{RA:Spec}.} foi a RSSI\_ACL. Esta medida apresenta um andamento logarítmico ao longo da distância similar em todas as condições sob a forma de {$RSSI(d) = \alpha \log(d) + \beta $\@.} No entanto, o coeficiente $\beta$ muda consideravelmente conforme as condições atmosféricas\footnote{O $\alpha$ varia na ordem das unidades $(\underline{+} 5)$, o $\beta$ varia na ordem das dezenas $(\underline{+} 20)$}. Logo, o comportamento desta medida não é adequado para simplesmente aplicar a função inversa do comportamento observado. Para ultrapassar esta dificuldade, ao invés de nos apoiarmos na medição de uma ligação Rover -- Beacon, apoiámo-nos na relação entre as medições de várias ligações.
 
-\section{Relacionamento entre o RSSI\_ACL e distância}
+\section{Relacionamento entre o RSSI\_ACL e Distância}
 \label{ch:investigacao:relacao}
 
-A ideia essencial é um Beacon deduzir o significado do RSSI\_ACL de um Rover, baseando-se no conhecimento das posições dos outros Beacons e no RSSI\_ACL com que ele os ``vê''. A cada outro Beacon que um Beacon mede o RSSI\_ACL, ganha informação sobre qual é a força de sinal com que ``vê'' um dispositivo a uma distância equivalente à que eles estão separados. A relação entre a distância e o RSSI\_ACL a que os Beacons se ``vêem'' é chamada ``régua''\footnote{ O termo ``régua'' foi adoptado apenas no contexto do trabalho desenvolvido no estágio.}. Uma ``régua'' é usada para fazer corresponder uma distância a uma força de sinal. Se tivermos pelo menos uma ``régua'' e o RSSI\_ACL de um Rover, podemos deduzir, com alguma precisão, a distância a que um Rover está de um Beacon. Quanto mais réguas, maior a confiança nas estimativas. Por uma questão de simplicidade, o processo de dedução é uma regra de três simples. Há que ter em conta que isto faz com que seja ignorada a natureza logarítmica da relação, o que poderá levar a erros. A estimativa da posição do Rover é um anel\footnote{ Esta estimativa em forma de anel é, por vezes, referida como ``donut''.}, centrado no Beacon que efectuou a medição, com o raio interior e exterior correspondentes à menor e maior distância calculadas, respectivamente, com recurso às réguas. Isto requer que seja modificado o conceito de trilateração. Em vez de se intersectarem círculos, intersectam-se anéis. Isto faz com que o resultado final seja uma área onde se espera que o Rover esteja localizado.
+A ideia essencial é um Beacon deduzir o significado do RSSI\_ACL de um Rover, baseando-se no conhecimento das posições dos outros Beacons e no RSSI\_ACL com que ele os ``vê''. A cada outro Beacon que um Beacon mede o RSSI\_ACL, ganha informação sobre qual é a força de sinal com que ``vê'' um dispositivo a uma distância equivalente à que eles estão separados. A relação entre a distância e o RSSI\_ACL a que os Beacons se ``vêem'' chama-se ``régua''\footnote{ O termo ``régua'' foi adoptado apenas no contexto do trabalho desenvolvido no estágio.}. Uma ``régua'' é usada para fazer corresponder uma distância a uma força de sinal. Se tivermos pelo menos uma ``régua'' e o RSSI\_ACL de um Rover, podemos deduzir, com alguma precisão, a distância a que um Rover está de um Beacon. Note-se também que, por causa das alterações das condições atmosféricas, uma ``régua'' perde o significado ao longo do tempo. Quanto mais réguas actualizadas houver, maior a confiança nas estimativas. Por uma questão de simplicidade, o processo de dedução é uma regra de três simples. Há que ter em conta que isto faz com que seja ignorada a natureza logarítmica da relação, o que poderá levar a erros. A estimativa da posição do Rover é um anel\footnote{ Esta estimativa em forma de anel é, por vezes, referida como ``donut''.}, centrado no Beacon que efectuou a medição, com o raio interior e exterior correspondentes à menor e maior distância calculadas, respectivamente, com recurso às réguas. Isto requer que seja modificado o conceito de trilateração. Em vez de se intersectarem círculos, intersectam-se anéis, o que faz com que o resultado final seja uma área onde se espera que o Rover esteja localizado.
 
-\subsection{Regras base e testes}
+\subsection{Regras Base e Testes}
 
 
 Empiricamente, para que a dedução da distância a partir das ``réguas'' funcione, têm que ser cumpridas duas regras base: dois Beacons devem ``ver-se'' com, sensivelmente, o mesmo RSSI\_ACL; cada Beacon tem de ``ver'' o Rover com o mesmo RSSI\_ACL para a mesma distância.
 
-Para testar a primeira regra, foram dispostos dois Beacon distanciados de meio metro\footnote{ O estagiário já tinha fortes suspeitas que a primeira regra se verificava a todas as distâncias. Por isso, não houve grande preocupação com a distância escolhida.}. Com esta disposição, foram retiras amostras de RSSI\_ACL do Beacon 1 ao Beacon 2, e vice-versa. O Beacon 1 ``viu'' o Beacon 2 com um valor médio de -45 (desvio padrão de 1,9). O Beacon 2 ``viu'' o Beacon 1 com valor médio de -45 (desvio padrão de 2,5). Considerou-se que os valores obtidos seguem o estipulado na primeira regra.
+Para testar a primeira regra, foram dispostos dois Beacon distanciados de meio metro\footnote{ O estagiário já tinha fortes suspeitas que a primeira regra se verificava a todas as distâncias. Por isso, não houve grande preocupação com a distância escolhida.}. Com esta disposição, foram retiradas amostras de RSSI\_ACL do Beacon 1 ao Beacon 2, e vice-versa. O Beacon 1 ``viu'' o Beacon 2 com um valor médio de -45 (desvio padrão de 1,9). O Beacon 2 ``viu'' o Beacon 1 com valor médio de -45 (desvio padrão de 2,5). Considerou-se que os valores obtidos seguem o estipulado na primeira regra.
 
 Para testar se a segunda regra se verificava, foi retirada uma segunda amostra. Foram dispostos dois Beacons, sem obstáculos entre eles, a uma distância de 6 metros\footnote{A escolha deste valor foi claramente conformista. É quanto mede, aproximadamente, um dos lados da sala onde o estagiário trabalhou. Tendo em conta que o tamanho da sala é perfeitamente comum, pareceu uma medida representativa da média.}. Ao longo dos 6 metros, estavam 3 marcas equidistantes. Retiraram-se medições do RSSI\_ACL junto a cada Beacon e a cada marca, cada ligação durando cerca de um minuto. Os resultados estão na tabela~\ref{tab:3regras} e no gráfico~\ref{fig:3regras}. Por norma, à medida que o Rover se distanciava de um Beacon, a média da medida diminuía com o mesmo andamento, independentemente do Beacon em questão. À mesma distância, ambos os Beacons viam o Rover com aproximadamente a mesma média de valor de RSSI\_ACL. A medição a metro e meio do Beacon 2 é aquela que mais contraria o andamento esperado. Em contrapartida, esta medição, ao contrário das outras, teve um desvio padrão de valor 2 onde um valor de 1 seria o normal.
 
@@ -131,7 +131,7 @@ Distância ao Rover & Beacon 1 & Beacon 2 \\
   \label{fig:3regras}
 \end{figure}
 
-Como as amostras não violaram demasiado as regras dispostas, esta foi a base do trabalho desenvolvido.
+Como as amostras vão bastante ao encontro das regras dispostas, esta foi a base do trabalho desenvolvido.
 
 \section{Resumo e Conclusões}
 Foram testadas todas as medidas disponíveis e só o RSSI\_ACL revelou um comportamento adequado e bem documentado. No entanto, devido à susceptibilidade de interferências atemosféricas, a função inversa da regressão do comportamento da medida não é suficiente. Para ultrapassar isto, foi formulado e empiricamente testado um método de dedução de localização baseado na relação entre várias medições de RSSI\_ACL simultâneas.

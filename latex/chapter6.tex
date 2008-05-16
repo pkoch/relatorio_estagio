@@ -5,30 +5,30 @@
 
 Neste capítulo serão explicados detalhes da implementação, nomeadamente, a escolha de tecnologias e dificuldades no uso das mesmas, as partes que não foram implementadas, o funcionamento de certas classes menos convencionais e como alterar o método de localização usado.
 
-\section{Escolha de tecnologias}
+\section{Escolha de Tecnologias}
 
 
 \subsection{Beacon}
 
 
-Antes sequer de se testar as medidas como foi feito no capítulo \ref{ch:investigacao}, foi preciso criar um ambiente que permitisse acesso ao HCI.
+Antes sequer de se testar as medidas como descrito no capítulo \ref{ch:investigacao}, foi preciso criar um ambiente que permitisse acesso ao HCI.
 
-A primeira tentativa de criar este ambiente foi em \emph{Windows Mobile 4}. Criar um ambiente neste Sistema Operativo (ou SO) era particularmente útil devido à disponibilidade de equipamentos com este SO. No entanto, a biblioteca disponível e respectiva documentação são relativamente complexas. Por isso, não se conseguiu criar o ambiente necessário.
+A primeira tentativa de criar este ambiente foi em \emph{Windows Mobile 4}. Criar um ambiente neste Sistema Operativo (SO) era particularmente útil devido à disponibilidade de equipamentos com este SO. No entanto, a biblioteca disponível e respectiva documentação são complexas e incompletas. Por isso, não se conseguiu criar o ambiente necessário.
 
 A próxima hipótese era criar o ambiente em \nname{Windows}, tendo em conta a ampla disponibilidade com computadores com este SO. A única maneira de aceder ao HCI é em \nname{Kernel Land}, em \nname{Drivers}. Logo, tendo em conta o investimento considerável que teria que haver para construir um \nname{Driver} específico para esta tarefa, foi abandonada a hipótese.
 
-Embora também haja algumas ferramentas para comunicação com o HCI em \nname{Java}, todas as tentativas, em ambiente \nname{Windows}, falharam.
+Embora também haja algumas ferramentas para comunicação com o HCI em \nname{Java}, todas as tentativas feitas, em ambiente \nname{Windows}, falharam.
 
 Em \nname{Linux}, há uma \foreign{framework} de BT chamada \nname{BlueZ}. Esta \foreign{framework} permite acesso relativamente simples, embora trabalhoso, ao HCI.
 
 Havia ainda a hipótese de usar \nname{OS X}, o SO da \nname{Apple}. Seguir por esta hipótese obrigaria a que o custo de cada Beacon fosse consideravelmente mais elevado, comparado com o uso de \nname{Linux}. Uma pesquisa breve não revelou nenhum resultado relevante, pelo que também se abandonou a hipótese.
 
-No final, a única alternativa era usar BlueZ. Foi nesta \foreign{framework} que assentou todo o trabalho na componente do Beacon.
+No final, a única alternativa era usar BlueZ. Foi nesta \foreign{framework} que assentou todo o trabalho na componente do Beacon. Tanto a \foreign{framework} como o código desenvolvido são em C.
 
 \subsection{Central}
 
 
-Do lado do Central, a tecnologia usada é toda assente em \nname{.NET}. Havia imensas possibilidades para a implementação deste sistema, tendo em conta que a única restrição era conseguir ler dados de uma rede \nname{Ehternet}.
+Do lado do Central, a tecnologia usada é toda assente em {\nname{.NET}}\@. Havia imensas possibilidades para a implementação deste sistema, tendo em conta que a única restrição era conseguir ler dados de uma rede \nname{Ethernet}.
 
 A escolha acabou por recair sobre \nname{.NET} porque:
 \begin{itemize}
@@ -37,29 +37,29 @@ A escolha acabou por recair sobre \nname{.NET} porque:
 \item Acima de tudo, o estagiário tinha ao seu dispor a ajuda de dois colegas muito experientes em \nname{.NET}.
 \end{itemize}
 
-A linguagem de programação usada foi \nname{C\#}, devido à vasta experiência do estagiário em \nname{Java}, pois \nname{Java} e \nname{C\#} são muito parecidos.
+A linguagem de programação usada foi \nname{C\#}, devido à vasta experiência do estagiário em \nname{Java}, pois \nname{Java} e \nname{C\#} são muito parecidas.
 
 A persistência de dados foi conseguida através do uso de \nname{NHibernate}. Esta \foreign{framework} permite que, apenas adicionando algumas anotações, o acesso à base de dados seja todo abstraído e automatizado, inclusive a geração do esquema de dados \cite{NHibernate.org}.
 
 Para interface com o utilizador no pacote \cname{Visualizer}, foi usado \nname{Windows Forms}.
 
-\section{Dificuldades no uso da Framework BlueZ}
+\section{Dificuldades no Uso da Framework BlueZ}
 
 
 Além do processo moroso de disposição física dos dispositivos, um dos aspectos que mais atrasou o desenvolvimento foi a adaptação à \foreign{framework} BlueZ. A \foreign{framework} esconde e/ou abstrai pormenores do funcionamento do BT para simplificar o pensamento do programador. Esta abstracção nem sempre é benéfica ou, sequer, bem implementada. Um dos casos mais notórios é o dos \foreign{timeouts} no estabelecimento das ligações. Como a \foreign{framework} não tem documentação além do código em si, todo o esforço inicial passou por compreender como outras pessoas usaram a \foreign{framework}.
 
 Todas as chamadas à função de criação de ligações levavam um parâmetro chamado \cname{to}, de \foreign{TimeOut}. No entanto, este \nname{timeout} não é o tempo máximo de espera pelo estabelecimento da ligação, mas sim o tempo máximo que o código espera pela confirmação da ligação. Isto levou a casos onde o código falhava o estabelecimento da ligação mas, inquirindo o HCI com as ferramentas certas, a ligação era criada. Só esta confusão atrasou imenso a implementação. Foi fonte de inúmeras confusões até o estagiário se ter apercebido do que é que, ao certo, se estava a passar.
 
-No fim, a ideia que passou foi a de que, para controlo preciso do HCI, é preferível não delegar o tratamento da comunicação, ganhando um maior controlo sobre todos os processos de BT. Para situações em que não é preciso tamanho controlo, o uso da \nname{framework} deverá ser uma vantagem.
+No fim, a ideia que passou foi a de que, para controlo preciso do HCI, é preferível não delegar a \foreign{frameworks} o tratamento da comunicação, ganhando um maior controlo sobre todos os processos de BT. Para situações em que não é preciso tamanho controlo, o uso da \nname{framework} deverá ser uma vantagem.
 
-\section{Partes não implementadas}
+\section{Partes Não Implementadas}
 
 
 A única parte do sistema que não foi implementada foi parte da comunicação Central --- Beacon. No protótipo, os dispositivos que o Beacon procurava estavam descritos em código, ao invés de lhe serem comunicados pelo central.
 
 De resto, foi implementada a totalidade da solução.
 
-\section{Implementação de classes}
+\section{Implementação de Classes}
 
 
 Nesta secção é explicado o funcionamento de duas classes que, embora não suficientemente relevante para estar na descrição da solução, é importante para se perceber o funcionamento do sistema como um todo.
@@ -75,32 +75,32 @@ Um objecto desta classe tem os valores mínimos e máximos de cada eixo da área re
 \label{ch:implementacao:machine}
 
 
-O tratamento da comunicação Beacon --- Central é feito com recurso a uma máquina de estados. A máquina de estados em si está implementada na classe abstracta \cname{StringStateMachine}. O objectivo desta classe é ler dados, \foreign{input}, de uma \foreign{stream} e chamar métodos conforme o formato desses dados.
+O tratamento da comunicação Beacon --- Central é feito com recurso a uma máquina de estados. A máquina de estados em si está implementada na classe abstracta \cname{StringStateMachine}. O objectivo desta classe é ler dados (\foreign{input}) de uma \foreign{stream} e chamar métodos conforme o formato desses dados.
 
 Tentando fazer um mapeamento para a definição teórica de máquina de estado temos:
 \begin{itemize}
 \item Alfabeto de entrada: símbolos ASCII.
 \item Conjunto de estados: conjunto de métodos com o atributo \cname{State}, ou equivalente. Estes métodos têm de obedecer ao \nname{delegate} \cname{StringStateMachine.State}. Devem devolver o conjunto de estados que serão aceites a seguir ao processamento deste estado. Quando a máquina de estados entra num estado, é executado o método correspondente.
 \item Estado inicial: este estado está implícito no construtor.
-\item Função de transição de estados: este conceito está um pouco adulterado. Ao invés de receber o estado actual e o \emph{input} e devolver o próximo estado, a função recebe o \emph{input} e um mapa de \nname{RegEx} para função, que representa as transições possíveis, e devolve o próximo estado. A \nname{RegEx} correspondente a um estado está na anotação do método que o representa. Os próximos estados possíveis são devolvidos pelo estado anterior. Os estados possíveis para a primeira transição são os marcados com a anotação \cname{StartingState} (que descende da anotação \cname{State}).
+\item Função de transição de estados: este conceito está um pouco adulterado. Ao invés de receber o estado actual e o \emph{input} e devolver o próximo estado, a função recebe o \emph{input} e um mapa de \nname{RegEx} para função, que representa as transições possíveis e devolve o próximo estado. A \nname{RegEx} correspondente a um estado está na anotação do método que o representa. Os próximos estados possíveis são devolvidos pelo estado anterior. Os estados possíveis para a primeira transição são os marcados com a anotação \cname{StartingState} (que descende da anotação \cname{State}).
 \item Estados finais: um estado é considerado final quando chama a função \cname{End} durante a execução.
 \end{itemize}
 
 A classe \cname{ProtocolTalker}, descendente de \cname{StringStateMachine}, implementa apenas os métodos, anotados devidamente, que devem ser chamados cada vez que chega uma mensagem do Beacon.
 
-\section{Alternando do método de localização}
+\section{Alterando o Método de Localização}
 
 
 Para mudar o método de localização temos de ter atenção a dois aspectos: onde se guardam as medições efectuadas e como são calculadas as estimativas das posições dos Rovers.
 
 As medições efectuadas estão guardadas em duas classes diferentes, conforme a natureza da medição. As medições Beacon---Beacon  estão guardadas em objectos da classe \cname{Ruler}. As medidas Beacon---Rover estão guardadas em objectos da classe \cname{Donut}. Em ambos os casos, é mantida uma lista (chamada \cname{values}) das $N$ últimas medições efectuadas, onde $N$ é um valor estático de cada classe (chamado \cname{BACKLOG}). O acesso a esta lista, feito através de chamadas ao método \cname{GetRssi}, supõe que apenas queremos um único valor; por exemplo, a média das medições guardadas. Na implementação actual, a lista guarda apenas um valor e o método \cname{GetRssi} devolve esse valor.
 
-O cálculo das estimativas está, também, distribuído por dois sítios, objectos da classe \cname{Donut} e da classe \cname{PositionedRover}. Os objectos \cname{Donut} são responsáveis por calcular o anel, centrado no Beacon desse \cname{Donut}, onde estimam que o Rover desse \cname{Donut} esteja. Na implementação actual, o raio interno e externo do anel é calculado no método \cname{GetRadius}, e é ai que é feita a relação entre as medições e a distância. Os objectos \cname{PositionedRover} são responsáveis por intersectar todos os anéis que se referem ao Rover representado pelo objecto.
+O cálculo das estimativas está, também, distribuído por dois sítios, objectos da classe \cname{Donut} e da classe \cname{PositionedRover}. Os objectos \cname{Donut} são responsáveis por calcular o anel, centrado no Beacon desse \cname{Donut}, onde estimam que o Rover desse \cname{Donut} esteja. Na implementação actual, o raio interno e externo do anel é calculado no método \cname{GetRadius}, e é aí que é feita a relação entre as medições e a distância. Os objectos \cname{PositionedRover} são responsáveis por intersectar todos os anéis que se referem ao Rover representado pelo objecto.
 
-\subsection{Exemplo de um cálculo alternativo}
+\subsection{Exemplo de um Cálculo Alternativo}
 
 
-Sabendo que o RSSI\_ACL é logarítmico ao longo da distância, podemos dizer que a distância é exponencial ao longo do RSSI\_ACL. A título de exemplo, suponha-se que é pretendido que a distância seja calculada com recurso a uma regressão exponencial em vez de recorrer ao pensamento explicado em \ref{ch:investigacao:relacao}. Para isso, precisaríamos de duas modificações: criar um mecanismo que efectuasse a regressão e adaptar a implementação para o usar.
+Sabendo que o RSSI\_ACL é logarítmico ao longo da distância, podemos dizer que a distância é exponencial ao longo do RSSI\_ACL. A título de exemplo, suponha-se que é pretendido que a distância seja calculada com recurso a uma regressão exponencial em vez de recorrer ao pensamento explicado sa Secção \ref{ch:investigacao:relacao}. Para isso, precisaríamos de duas modificações: criar um mecanismo que efectuasse a regressão e adaptar a implementação para o usar.
 
 Primeiro, seria criada uma classe responsável pelo cálculo da regressão. Esta receberia um dicionário, onde as chaves fossem medições e o valor de cada chave fosse a distância a que essa medição foi recolhida, e devolveria uma função que representava o resultado da regressão.
 
@@ -114,7 +114,7 @@ Esqueleto da implementação da função de calculo da regressão em C\# 2.0.
 \begin{flushleft}
 \hspace{1.2672040550529761cm}{
 {\scriptsize }
-\textcolor[rgb]{0,0.5019607843137255,0}{{\scriptsize //we should get something like $y = e\frac{x-B}{A}$. We want A, B and C.}}
+\textcolor[rgb]{0,0.5019607843137255,0}{{\scriptsize //we should get something like $y = e\frac{x-B}{A}$. We want A and B.}}
 }
 \end{flushleft}
 \begin{flushleft}
@@ -124,13 +124,10 @@ Esqueleto da implementação da função de calculo da regressão em C\# 2.0.
 \hspace{1.2672040550529761cm}{{\scriptsize }\textcolor[rgb]{0,0,1}{{\scriptsize double}}~{\scriptsize  b = }\textcolor[rgb]{0,0,1}{{\scriptsize this}}{\scriptsize .CalculateB(evidence);}}
 \end{flushleft}
 \begin{flushleft}
-\hspace{1.2672040550529761cm}{{\scriptsize }\textcolor[rgb]{0,0,1}{{\scriptsize double}}~{\scriptsize  c = }\textcolor[rgb]{0,0,1}{{\scriptsize this}}{\scriptsize .Calculate}{\scriptsize C}{\scriptsize (evidence);}}
+\hspace{1.2672040550529761cm}{{\scriptsize }\textcolor[rgb]{0,0,1}{{\scriptsize return}}~{\scriptsize  }\textcolor[rgb]{0,0,1}{{\scriptsize new}}~{\scriptsize  }\textcolor[rgb]{0.16862745098039217,0.5686274509803921,0.6862745098039216}{{\scriptsize Regression}}{\scriptsize (}\textcolor[rgb]{0,0,1}{{\scriptsize delegate}}{\scriptsize (}\textcolor[rgb]{0,0,1}{{\scriptsize short}}~{\scriptsize  x) \{}}
 \end{flushleft}
 \begin{flushleft}
-\hspace{1.2672040550529761cm}{{\scriptsize }\textcolor[rgb]{0,0,1}{{\scriptsize return}}~{\scriptsize  }\textcolor[rgb]{0,0,1}{{\scriptsize new}}~{\scriptsize  }\textcolor[rgb]{0.16862745098039217,0.5686274509803921,0.6862745098039216}{{\scriptsize RegressionResult}}{\scriptsize (}\textcolor[rgb]{0,0,1}{{\scriptsize delegate}}{\scriptsize (}\textcolor[rgb]{0,0,1}{{\scriptsize short}}~{\scriptsize  x) \{}}
-\end{flushleft}
-\begin{flushleft}
-\hspace{1.2672040550529761cm}{{\scriptsize }\hspace{1.2672040550529761cm}{\scriptsize }\textcolor[rgb]{0,0,1}{{\scriptsize return}}~{\scriptsize  }\textcolor[rgb]{0.16862745098039217,0.5686274509803921,0.6862745098039216}{{\scriptsize Math}}{\scriptsize .Exp(x - b / a)}{\scriptsize  + c}{\scriptsize ;}}
+\hspace{1.2672040550529761cm}{{\scriptsize }\hspace{1.2672040550529761cm}{\scriptsize }\textcolor[rgb]{0,0,1}{{\scriptsize return}}~{\scriptsize  }\textcolor[rgb]{0.16862745098039217,0.5686274509803921,0.6862745098039216}{{\scriptsize Math}}{\scriptsize .Exp(x - b / a)}{\scriptsize ;}}
 \end{flushleft}
 \begin{flushleft}
 \hspace{1.2672040550529761cm}{{\scriptsize }{\scriptsize \});}}

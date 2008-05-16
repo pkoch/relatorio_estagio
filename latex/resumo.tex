@@ -8,18 +8,18 @@ aonde está instalada uma grelha de vários outros dispositivos de \nname{Bluetoot
 apelidados de \foreign{Beacons}. Os \foreign{Beacons} são estacionários,
 é conhecida a sua localização, e estão ligados a um computador central. O
 \foreign{Rover} é transportado por uma pessoa e, por isso, assume-se que tem
-liberdade de movimentos total. O objectivo deste estágio era construir uma plataforma que dote a grelha de
+liberdade total de movimentos. O objectivo deste estágio era construir uma plataforma que dotasse a grelha de
 \foreign{Beacons} com a capacidade de localizar o \foreign{Rover} quando este se
-encontra dentro da grelha.
+encontrasse dentro da grelha.
 
-Foram estudados os mecanismos de localização, a tecnologia \nname{Bluetooth} e as de possibilidades que esta
-tecnologia tem para ser usada como base de um  sistema de localização. Chega-se à conclusão que terá que ser usado
+Foram estudados os mecanismos de localização, a tecnologia \nname{Bluetooth} e as possibilidades que esta
+tecnologia tem para ser usada como base de um  sistema de localização. Chegou-se à conclusão que terá que ser usado
 um mecanismo de trilateração com base numa medida proprietária dos dispositivos da \nname{Cambridge Silicon Radio},
-chamada RSSI\_ACL, que indica a força de sinal com que um dispositivo comunica com outro. Chega-se à conclusão que
+chamada RSSI\_ACL, que indica a força de sinal com que um dispositivo comunica com outro. Chegou-se à conclusão que
 a medição do RSSI\_ACL entre um par de dispositivos não é suficiente. Elabora-se um método com base em observações
-empiricas para ultrapassar esta limitação. É desenhado e implementado um prótótipo.
+empíricas para ultrapassar esta limitação. É desenhado e implementado um protótipo.
 
-Chega-se à conclusão que o método elaborado não produz resultados satisfatórios por desconsiderar alguma caracteristicas
+Chega-se à conclusão que o método elaborado não produz resultados satisfatórios por desconsiderar algumas características
 da medida RSSI\_ACL. É proposta uma alternativa que se baseia em regressões exponenciais calculadas durante a execução.
 
 

@@ -1,9 +1,10 @@
 %  Last modified on  Wed May 24 17:51:57 2006
 
-\chapter{Conclusões}
+\chapter{Conclusões e Trabalho Futuro}
 \label{ch:conclusoes}
-Neste capítulo será sumariado o conhecimento adquirido ao longo do estágio.
+Neste capítulo será sumariado o conhecimento adquirido ao longo do estágio e serão feitas propostas de trabalho futuro.
 
+\section{Conclusões}
 A partir do trabalho realizado, podemos concluir que:
 \begin{itemize}
 	\item Não introduzindo hardware específico, com o fraco suporte para inspecção do sinal da comunicação BT requerido pela especificação, a solução terá que se apoiar em extensões proprietárias do HCI;
@@ -12,7 +13,14 @@ A partir do trabalho realizado, podemos concluir que:
 	\item Ignorar o andamento logarítmico do RSSI\_ACL ao longo da distância é um erro.
 \end{itemize}
 
-Embora a experiência não tenha tido todos os resultados pretendidos, decorreu como esperado. Tendo em conta todas as anteriores tentativas falhadas por parte de outras pessoas, os objectivos estavam claramente ``inflacionados''. De todas as conclusões que o trabalho desenvolvido baseou, considera-se a mais importante é ter encontrado uma medida proporcionada pelo HCI com forte correlação com a distância. O protótipo, embora não funcione plenamente, dá alguns resultados consistentemente. Isto proporciona a sensação de que é possível melhorar as ideias e métodos actuais para conseguir os objectivos que, por hora, são vistos como demasiado ambiciosos.
+Embora a experiência não tenha tido todos os resultados pretendidos, decorreu como esperado. Tendo em conta todas as anteriores tentativas falhadas por parte de outras pessoas, os objectivos estavam claramente ``inflacionados''. De todas as conclusões a que se chegou com o trabalho desenvolvido, considera-se que a mais importante é ter encontrado uma medida proporcionada pelo HCI com forte correlação com a distância. O protótipo, embora não funcione plenamente, dá alguns resultados consistentemente. Isto proporciona a sensação de que é possível melhorar as ideias e métodos actuais para conseguir os objectivos que, por hora, são vistos como demasiado ambiciosos.
+
+\section{Trabalho Futuro}
+No fim de toda a experiência, o estagiário sente que há dois campos que merecem atenção. Um deles é claramente o método de dedução da distância a partir da força de sinal. O outro é a qualidade do código de comunicação com o HCI.
+
+O actual método de dedução da localização não considera a referida natureza logarítmica do andamento. Aqui, a solução mais simples é, durante a execução, efectuar a regressão logarítmica e determinar a função inversa. Com isto, temos um sistema de dedução da posição simples. O maior risco desta aproximação é o impacto do erro. Tento em conta que se trata duma função exponencial, é previsível que as margens de dúvida aumentem bastante.
+
+Em relação à comunicação com o HCI, o estagiário considera que já houve demasiados enganos e mal entendidos no uso da framework. Tendo em conta que se adquiriu bastante experiência na interacção com o HCI, apostar em não usar nenhuma abstracção resultará num controlo preciso. Há só que considerar que a carga de trabalho aumenta bastante. 
 
 %$\ll$3 ou 5 páginas sugeridas
 %\vspace*{\baselineskip}

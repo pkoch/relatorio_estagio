@@ -2,8 +2,8 @@
 
 \chapter{Introdução}
 \label{ch:intro}
-\section{O projecto: Framework de radiolocalização passiva por Bluetooth}
-\subsection{Contextualização e motivação}
+\section{O projecto: Framework de Radiolocalização Passiva por Bluetooth}
+\subsection{Contextualização e Motivação}
 
 Desde sempre que o Homem tem a necessidade de comunicar e tem sido um aspecto de
 interesse permanente. Começou-se pela expressão corporal e sonora. Inventou-se a
@@ -15,13 +15,11 @@ Os telemóveis, invenção relativamente recente, têm sido dotados de cada vez mais
 capacidades. Ao que era apenas um telefone sem fios, foi-se acrescentando imensa
 funcionalidade: gestão de contactos, gestão de agenda, leitor de música digital,
 etc\ldots Actualmente, com a adição de tanta funcionalidade, o conceito de
-telemóvel está a mudar. 
-
-Estamos a assistir à fusão entre telemóveis e computadores pessoais, reunindo num
-só dispositivo a capacidade de gerir e transformar informação, vindo do lado dos
-computadores, à capacidades de comunicar informação, vindo do lado dos telemóveis.
-Estes novos dispositivos chamam-se Assistentes Pessoais Digitais, embora sejam
-mais conhecidos pelo acrónimo em inglês, PDA
+telemóvel está a mudar. Estamos a assistir à fusão entre telemóveis e computadores
+pessoais, reunindo num só dispositivo a capacidade de gerir e transformar
+informação, vindo do lado dos computadores, à capacidades de comunicar informação,
+vindo do lado dos telemóveis. Estes novos dispositivos chamam-se Assistentes
+Pessoais Digitais, embora sejam mais conhecidos pelo acrónimo em inglês, PDA
 (\foreign{Personal Digital Assistant}).
 
 Com toda esta funcionalidade, tem-se vindo a revelar o desejo de que estes
@@ -32,12 +30,12 @@ dados que funciona sobre ondas rádio, permitindo transferências de informação
 entre dispositivos de forma cómoda e simples.
 
 As ondas rádio, como as que são usadas pelo BT, são propagadas pelo ar e podem
-sofrer de alterações e atenuações durante a propagação. Por isso, podem ser
+sofrer alterações e atenuações durante a propagação. Por isso, podem ser
 ``sentidas'' com mais ou menos força pelos intervenientes nessa comunicação.
 Um aparelho interveniente nesta comunicação precisa de estar consciente da força
 com que vê a onda para pedir aos seus pares para a regularem conforme necessário.
 Numa situação simples onde não haja obstáculos na propagação das ondas, o único
-factor de atenuação é a distância que a onda tem de percorrer. Se um par de
+factor de atenuação é a distância que a onda tem de percorrer. Se dois
 dispositivos a comunicar por BT se distanciar um do outro progressivamente,
 terão de emitir as ondas rádio com cada vez mais força para que estas cheguem
 adequadamente ao seu destino.
@@ -51,7 +49,7 @@ móvel.
 
 Isto vai de encontro ao interesse do nosso telemóvel/PDA saber onde se encontra e
 poder, potencialmente, utilizar essa informação. Por exemplo, mudar o volume do
-aviso de chamada caso o telemóvel se encontra numa sala de reuniões, bloquear o
+aviso de chamada caso o telemóvel se encontre numa sala de reuniões, bloquear o
 nosso computador quando nos afastamos dele, só para nomear alguns usos.
 
 \subsection{Objectivo}
@@ -81,7 +79,7 @@ de dedução de localização.
 
 De uma forma mais específica, os objectivos do estágio são, por ordem:
 \begin{enumerate}
-\item Averiguar as medidas que o \nname{Bluetooth} proporciona, as que sejam passiveis
+\item Averiguar as medidas que o \nname{Bluetooth} proporciona que sejam passíveis
 		de serem utilizadas como base do sistema de localização;
 \item Formular um sistema que use essas medidas;
 \item Implementar esse sistema;
@@ -95,7 +93,7 @@ A \empresa~é uma empresa que pertence à
 divisão \foreign{Engineering} do grupo Novabase. Foi criada com o objectivo
 de fornecer serviços para dispositivos móveis.
 
-Na altura da sua concepção, ainda não havia proliferação suficiente para que este
+Na altura da sua concepção, ainda não havia proliferação de dispositivos suficiente para que este
 fosse um negócio sustentável. Por isso, antes de fornecer serviços, foi preciso
 criar uma base de utilizadores de PDAs razoável. Desde então, em segundo
 plano, foi-se acumulando \foreign{know-how} dentro da empresa, facilitando assim o
@@ -106,7 +104,7 @@ distribuição é mantido mais pelo volume de negócios que gera do que por interess
 estratégico. Agora que há a base de utilizadores desejada, a aposta no
 fornecimento de serviços começa a ganhar momento e importância.
 
-\section{O projecto na instituição}
+\section{O Projecto na Instituição}
 
 Como a empresa está num ponto de viragem, há que capitalizar as tecnologias
 existentes nos equipamentos móveis com o intuito de gerar valor acrescentado para
@@ -116,25 +114,24 @@ disposição uma ferramenta que servirá como forte base de apoio para a criação de
 um leque de novos produtos, gozando tanto de uma facilidade acrescida em diminuir
 o \foreign{Time to Market} como de acumulação de \foreign{know-how}.
 
-\section{Estrutura e conteúdo do documento}
+\section{Estrutura e Conteúdo do Documento}
 
 Este documento está dividido em três grandes partes: apresentação do problema,
 explanação da investigação, planeamento e implementação da solução e resultados e conclusões.
 
 A apresentação do problema é feita a três tempos.
-No capítulo~\ref{ch:problema} será dado a conhecer ao leitor a definição completa do problema. Embora de forma sucinta, são apresentados os conceitos em que o problema assenta. Esta apresentação será devidamente guiada para que o leitor não tenha dificuldades em ler o resto do documento.
-No capítulo~\ref{ch:sota} é dado a conhecer o estado da arte, a maneira como outros tentaram resolver este mesmo problema e quais os resultados a que chegaram. De todos os artigos relevantes, são destacados aqueles que documentam métodos e/ou aferições de forma concreta.
+No Capítulo~\ref{ch:problema} será dado a conhecer ao leitor a definição completa do problema. Embora de forma sucinta, são apresentados os conceitos em que o problema assenta. Esta apresentação será devidamente guiada para que o leitor não tenha dificuldades em ler o resto do documento.
+No Capítulo~\ref{ch:sota} é dado a conhecer o estado da arte, a maneira como outros tentaram resolver este mesmo problema e quais os resultados a que chegaram. De todos os artigos relevantes, são destacados aqueles que documentam métodos e/ou aferições de forma concreta.
 
 A explanação da estratégia e implementação da solução consistem em três partes.
-No capítulo~\ref{ch:investigacao} será apresentada a investigação levada a cabo para testar as várias hipóteses apresentadas até agora. São explicadas as premissas iniciais e os processos e deduções que levaram até à hipótese final.
-No capítulo~\ref{ch:solucao} será exposta a arquitectura da solução na sua totalidade. A análise é dividida na sua componente física e lógica.
-Neste capítulo será exposta a arquitectura da solução na sua totalidade. A análise é dividida na sua componente física e lógica.
-No capítulo~\ref{ch:implementacao} serão explicados detalhes da implementação, nomeadamente, a escolha de tecnologias e dificuldades no uso das mesmas, as partes que não foram implementadas, o funcionamento de certas classes menos convencionais e como alterar o método de localização usado.
+No Capítulo~\ref{ch:investigacao} será apresentada a investigação levada a cabo para testar as várias hipóteses apresentadas até agora. São explicadas as premissas iniciais e os processos e deduções que levaram até à hipótese final.
+No Capítulo~\ref{ch:solucao} será exposta a arquitectura da solução na sua totalidade. A análise é dividida na sua componente física e lógica.
+No Capítulo~\ref{ch:implementacao} serão explicados detalhes da implementação, nomeadamente, a escolha de tecnologias e dificuldades no uso das mesmas, as partes que não foram implementadas, o funcionamento de certas classes menos convencionais e como alterar o método de localização usado.
 
 
 Os resultados e conclusões estão divididos por dois capítulos.
-No capítulo~\ref{ch:resultados} será exposto o funcionamento comum do protótipo desenvolvido, serão avaliados os resultados do mesmo e serão feitas propostas de trabalho futuro.
-No capítulo \ref{ch:conclusoes} será exposto o funcionamento comum do protótipo desenvolvido, serão avaliados os resultados do mesmo e serão feitas propostas de trabalho futuro.
+No Capítulo~\ref{ch:resultados} será exposto o funcionamento comum do protótipo desenvolvido e serão avaliados os resultados do mesmo.
+No Capítulo \ref{ch:conclusoes} será sumariado o conhecimento adquirido ao longo do estágio e serão feitas propostas de trabalho futuro.
 
 %$\ll$3 ou 5 páginas sugeridas
 %\vspace*{\baselineskip}
