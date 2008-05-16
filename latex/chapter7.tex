@@ -1,25 +1,70 @@
 %  Last modified on  Wed May 24 17:51:57 2006
 
-\chapter{Conclusões e Perspectivas de Trabalho Futuro} \label{ch:conclusao}
+\chapter{Resultados, Avaliação e Trabalho Futuro}
 
-$\ll$3 ou 5 páginas sugeridas
-\vspace*{\baselineskip}
 
-De preferência, não exceder as 80 páginas no total do Relatório de
-Estágio até ao fim desta última secção.
+Neste ca-pí-tu-lo se-rá exposto o funcionamento comum do pro-tó-ti-po desenvolvido, se-rão avaliados os resultados do mesmo e se-rão feitas propostas de trabalho futuro.
 
-Algumas alusões devem ser feitas aos capítulos anteriores e,
-principalmente, às principais conclusões de cada um.
+\section{Funcionamento típico do protótipo desenvolvido}
 
-As conclusões finais devem focar o sucesso/insucesso do trabalho,
-revendo as dificuldades encontradas. 
-Devem resumir, de alguma forma, as vantagens do produto desenvolvido e
-a utilidade que possa ter para a instituição de estágio ou para os
-seus clientes/parceiros.
 
-Algumas questões podem ainda ser incluídas acerca da forma como o
-estágio correu; a integração, a formação dada pela instituição, as
-facilidades e dificuldades sentidas ao longo do estágio.
+Nesta secção se-rá retratado o funcionamento típico do pro-tó-ti-po desenvolvido. Começaremos pela ins-ta-la-ção das componentes fí-si-cas, pelos procedimentos de ``arranque'', passando pelo funcionamento pleno de todo o sistema até ao comportamento das de-du-ções efectuadas.
 
-\vspace*{\baselineskip}
-\noindent$\gg$
+\subsection{Instalação e Arranque}
+\label{_Ref177923737}
+
+O primeiro aspecto a ter em mente é o sítio que cada Beacon terá. Estes devem estar dispostos de modo a que todas as posições a monitorizar estejam cobertas pelo alcance de, pelo menos, três Beacons.
+
+Inserir figura de mau posicionamento
+
+Inserir figura de bom posicionamento.
+
+A próxima preocupação é como dispor os Beacons em si, tanto o dispositivo BT como o anfitrião do mesmo\footnote{ Como explicado em 5.1, um Beacon como um todo é constituído pelo dispositivo BT e pela máquina onde este está hospedado.}. O dispositivo BT deve estar no sítio planeado no passo anterior. É preciso aprovisionar sítios para os anfitriões e, talvez, os cabos necessários para ligar os dispositivos BT aos anfitriões (caso a ligação seja USB ou a antena do dispositivo seja externa).
+
+Tendo os Beacons dispostos e instalados, falta ligá-los a uma rede \emph{Ethernet}. Aqui, o maior inconveniente é ter de evitar o uso de WiFi. WiFi usa a mesma banda de frequências que o BT e pode interferir na localização, logo o seu uso deve ser minimizado.
+
+O próximo passo é ligar o Central à rede \emph{ehternet} e arrancar o programa desta parte do sistema. Durante o arranque, o Central envia para o \emph{stdout} o endereço IP e porta TCP aonde vai esperar que os Beacons se liguem. O passo seguinte é correr o binário que contém a parte do Beacon do sistema em cada um dos Beacons, dando como argumento o IP e a porta TCP do Central.
+
+Nesta altura, os Beacons começam o diálogo com o Central. Primeiro avisam que começaram uma sessão de funcionamento. Não muito depois, os Beacons devem começar a tirar medições de RSSI\_ACL da força de sinal com que se ``vêem'' uns aos outros, informando o Central dos valores.
+
+Nesta altura, o sistema está pronto a localizar um Rover que entre na sua área de actuação.
+
+\subsection{Funcionamento}
+
+
+Se ligarmos um dispositivo BT reconhecido como Rover, eventualmente, os Beacons ligam-se a ele. Eventualmente porque um Beacon só pode tentar ligar-se a um Rover de cada vez e cada tentativa de ligação demora aproximadamente 5 segundos.
+
+No melhor dos casos, os Beacons demoram 5 segundos a reconhecer a presença do Rover. No pior dos casos, demoram o número de Rovers registados multiplicado por cinco, em segundos. O valor máximo de espera por resposta de um Rover pode ser controlado. Com base em observações empíricas, abaixo dos 3 segundos, as ligações nem sempre se concretizam e acima de 5 segundos não temos aumento de conectividade numa área de 8 metros quadrados.
+
+À medida que as ligações são efectuadas, retiradas medições do RSSI\_ACL e comunicado o seu valor ao Central, a interface gráfica vai mostrando as deduções feitas pelo Central. Quando três anéis se intersectam, é marcado na interface o centro geométrico da área de intersecção.
+
+Inserir Printscreen das cenas em funcionamento.
+
+\section{Comportamento e avaliação das estimativas}
+
+
+Nos testes efectuados, os Beacons estavam dispostos num triângulo isósceles rectângulo, cada cateto com 2,5 metros.
+
+Nos testes efectuados, o sistema, quase sempre, detectava com precisão quando o Rover se situava no centro geométrico do polígono formado pelos Beacons. À medida que o Rover se distanciava do centro, embora com menos sucesso, o sistema conseguia ``ver'' o sentido do deslocamento relativamente bem, mas não a quantidade do mesmo. Ou seja, o sistema sabia para que lado se mexeu o Rover, mas não o quanto se mexeu. As estimativas da amplitude do movimento eram sempre menores do que a amplitude real. Este desfasamento crescia à medida que o Rover se distanciava do centro.
+
+Pelo comportamento observado, pode-se facilmente concluir que ignorar o andamento logarítmico do RSSI\_ACL ao longo da distância foi um erro. É de notar que, mesmo com esta falha, o protótipo consegue estimar minimamente a posição de um Rover. Isto evidencia algum progresso e dá segurança para investir mais estudo num sistema de radiolocalização passiva apoiada em BT.
+
+\section{Trabalho futuro}
+
+
+No fim da implementação, o estagiário sente que há dois campos que merecem atenção. Um deles é claramente o método de dedução da distância a partir da força de sinal. O outro é a qualidade do código de comunicação com o HCI.
+
+O actual método de dedução da localização não considera a referida natureza logarítmica do andamento. Aqui, a solução mais simples é, durante a execução, efectuar a regressão logarítmica e determinar a função inversa. Com isto, temos um sistema de dedução da posição simples. O maior risco desta aproximação é o impacto do erro. Tento em conta que se trata duma função exponencial, é previsível que as margens de dúvida aumentem bastante.
+
+Em relação à comunicação com o HCI, o estagiário considera que já houve demasiados enganos e mal entendidos no uso da framework. Tendo em conta que se adquiriu bastante experiência na interacção com o HCI, apostar em não usar nenhuma abstracção resultará num controlo preciso. Há só que considerar que a carga de trabalho aumenta bastante. 
+
+%$\ll$5 páginas sugeridas
+%\vspace*{\baselineskip}
+%
+%A existência ou não deste capítulo depende do tipo de trabalho;
+%admite-se que, em alguns casos, possa ser convertido numa secção do
+%capítulo~\ref{ch:prototipo} ou do capítulo ~\ref{ch:conclusao}.
+%
+%\vspace*{\baselineskip}
+%\noindent$\gg$
+%%%

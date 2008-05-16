@@ -1,51 +1,180 @@
 %  Last modified on  Fri May 19 09:41:45 2006
 
-\chapter{Introdução} \label{ch:intro}
+\chapter{Introdução}
+\label{ch:intro}
+\section{O projecto: Framework de radiolocalização passiva por Bluetooth}
+\subsection{Contextualização e motivação}
 
-$\ll$3 ou 5 páginas sugeridas
-\vspace*{\baselineskip}
+Desde sempre que o Homem tem a necessidade de comunicar e tem sido um aspecto de
+interesse permanente. Começou-se pela expressão corporal e sonora. Inventou-se a
+comunicação por símbolos, a fala e a escrita. Apareceu também a
+``telecomunicação'', comunicação à distancia. O telégrafo foi um dos primeiros
+instrumentos de telecomunicação. Seguiu-se o telefone e o telemóvel.
 
-O presente documento, na sua forma actual, pretende ser um modelo
-orientador para a escrita do relatório final do estágio curricular da
-LEIC, em termos de formato e de conteúdo.
-Entende-se no entanto que a estrutura possa, em casos particulares,
-ser alterada de forma a relatar melhor o trabalho efectuado, devendo
-os estagiários acordar com os seus orientadores a estrutura mais
-adequada. 
-No Anexo A, incluem­se algumas normas a seguir na elaboração do
-relatório final.
+Os telemóveis, invenção relativamente recente, têm sido dotados de cada vez mais
+capacidades. Ao que era apenas um telefone sem fios, foi-se acrescentando imensa
+funcionalidade: gestão de contactos, gestão de agenda, leitor de música digital,
+etc\ldots Actualmente, com a adição de tanta funcionalidade, o conceito de
+telemóvel está a mudar. 
 
-O corpo principal do relatório e os anexos não devem exceder os
-limites que constam no Anexo A deste documento. 
-Os anexos podem incluir textos que, embora sejam directamente
-relacionados com o trabalho, possam ser considerados como sendo
-pormenores dispensáveis numa leitura menos profunda.
+Estamos a assistir à fusão entre telemóveis e computadores pessoais, reunindo num
+só dispositivos a capacidade de gerir e transformar informação, vindo do lado dos
+computadores, à capacidades de comunicar informação, vindo do lado dos telemóveis.
+Estes novos dispositivos chamam-se Assistentes Pessoais Digitais, embora sejam
+mais conhecidos pelo acrónimo em inglês, PDA
+(\foreign{Personal Digital Assistant}).
 
-Documentos ou protótipos desenvolvidos pelo autor devem sempre ser
-incluídos nos anexos, no mesmo volume do relatório ou em documento
-separado. 
-Documentos importantes produzidos ou utilizados durante o estágio que,
-pela sua dimensão, não sejam colocáveis no corpo principal do
-relatório, podem também ser incluídos em anexos ou, simplesmente,
-apresentados como referências.
+Com toda esta funcionalidade, tem-se vindo a revelar o desejo de que estes
+aparelhos, sejam PDAs ou os telemóveis mais recentes, comuniquem entre si e
+possam partilhar informações. O \nname{Bluetooth} veio servir esta necessidade.
+\nname{Bluetooth}, também conhecido como BT, é uma tecnologia de comunicação de
+dados que funciona sobre ondas rádio, permitindo transferências de informação
+entre dispositivos de forma cómoda e simples.
 
-Nesta secção, ``Introdução'', deve descrever-se todo o contexto do
-estágio, apresentados o tema e conclusões do estágio (com mais algum
-detalhe do que no resumo) e referida a organização do relatório. 
-Deve ser apresentada a instituição de estágio em que decorreu o
-estágio (tal apresentação é necessária, nesta secção ou em outra
-secção introdutória), o projecto e o problema concreto que o estágio
-abordou.
+As ondas rádio, como as que são usadas pelo BT, são propagadas pelo ar e podem
+sofrer de alterações e atenuações durante a propagação. Por isso, podem ser
+``sentidas'' com mais ou menos força pelos intervenientes nessa comunicação.
+Um aparelho interveniente nesta comunicação precisa de estar consciente da força
+com que vê a onda para pedir aos seus pares para a regularem conforme necessário.
+Numa situação simples onde não haja obstáculos na propagação das ondas, o único
+factor de atenuação é a distância que a onda tem de percorrer. Se um par de
+dispositivos a comunicar por BT se distanciar um do outro progressivamente,
+terão de emitir as ondas rádio com cada vez mais força para que estas cheguem
+adequadamente ao seu destino.
 
-Por exemplo, podem ser consideradas as sescções apresentadas de
-seguida.
+É plausível afirmar que há alguma relação entre a força de sinal da comunicação
+entre dois dispositivos e a distância entre eles. Se um dos dispositivos for fixo,
+de localização conhecida, e o outro móvel,  podemos usar esta correlação para
+determinar a que distância o dispositivo móvel se encontra do fixo. Se três
+dispositivos fixos souberem esta distância, podemos saber a posição do dispositivo
+móvel.
 
+Isto vai de encontro ao interesse do nosso telemóvel/PDA saber onde se encontra e
+poder, potencialmente, utilizar essa informação. Por exemplo, mudar o volume do
+aviso de chamada caso o telemóvel se encontra numa sala de reuniões, bloquear o
+nosso computador quando nos afastamos dele, só para nomear alguns usos.
 
-\section{Apresentação da Instituição de Estágio xpto}\label{sec:xpto}
-\section{O Projecto Ptox na Instituição de Estágio xpto}
-\section{Estudo e Desenvolvimento do Protótipo Toxp no Projecto Ptox}
-\section{Organização e Temas Abordados no Presente Relatório}
+\subsection{Objectivo}
 
+O objectivo geral deste estágio é desenhar um sistema para localização de um
+aparelho, apoiando-se na correlação entre propriedades dos sinais trocados e a
+distância. Depois de desenhado o sistema, também se pretende implementar um
+protótipo como demonstração de conceito.
 
-\vspace*{\baselineskip}
-\noindent$\gg$
+A ideia inicial deste sistema é, num espaço amplo, instalar vários dispositivos
+BT fixos, formando uma grelha estática e bem conhecida. Cada dispositivo fixo
+chama-se ``Beacon''. Um Beacon é estacionário, é conhecida a sua localização, e
+todos estão ligados a um computador central. Além dos Beacons, é considerado
+outro tipo de dispositivos, os ``Rovers''. Um Rover é um dispositivo BT a ser
+localizado, conhecido de antemão e é, em principio, transportado por uma pessoa.
+
+Tendo a grelha instalada, os Beacons procuram constantemente pela presença de
+Rovers. Quando um Beacon encontra um Rover\footnote{ Um Beacon ``encontra'' um
+Rover quando se consegue ligar a ele. }, mede das propriedades dos sinais com que
+é feita a comunicação e informa o computador central dessa medida. O computador
+central fica então responsável por deduzir informação sobre a localização dos
+Rovers, a partir das propriedades dos sinais que lhe foram comunicadas pelos
+vários Beacons. 
+
+O sistema como um todo é composto pela grelha de Beacons e pelo \foreign{software}
+de dedução de localização.
+
+De uma forma mais específica, os objectivos do estágio são, por ordem:
+\begin{enumerate}
+\item Averiguar as medidas que o Bluetooth proporciona, as que sejam passiveis
+		de serem utilizadas como base do sistema de localização;
+\item Formular um sistema que use essas medidas;
+\item Implementar esse sistema;
+\item Confirmar a validade do sistema com testes; e
+\item Determinar a precisão/exactidão conseguidas,
+\end{enumerate}
+
+\section{A instituição: Novabase / Octal 2 Mobile}
+
+A \empresa é uma empresa que pertence à
+divisão \nname{Engineering} do grupo \nname{Novabase}. Foi criada com o objectivo
+de fornecer serviços em dispositivos móveis.
+
+Na altura da sua concepção, ainda não havia proliferação suficiente para que este
+fosse um negócio sustentável. Por isso, antes de fornecer serviços, foi preciso
+criar uma base de utilizadores de PDAs razoável. Desde então, em segundo
+plano, foi-se acumulando \foreign{know-how} dentro da empresa, facilitando assim o
+objectivo primordial.
+
+Neste momento, a empresa encontra-se num ponto de viragem. O negócio da
+distribuição é mantido mais pelo volume de negócios que gera do que por interesse
+estratégico. Agora que há a base de utilizadores desejada, a aposta no
+fornecimento de serviços começa a ganhar momento e importância.
+
+\section{O projecto na instituição}
+
+Como a empresa está num ponto de viragem, há que capitalizar as tecnologias
+existentes nos equipamentos móveis com o intuito de gerar valor acrescentado para
+conseguir penetração no mercado de serviços. Se considerarmos que quase todos os
+PDAs têm BT, aproveitando os frutos deste projecto, a empresa terá à sua
+disposição uma ferramenta que servirá como forte base de apoio para a criação de
+um leque de novos produtos, gozando tanto de uma facilidade acrescida em diminuir
+o \foreign{Time to Market} como de acumulação de \foreign{know-how}.
+
+\section{O documento: estrutura e conteúdo}
+
+Este documento está dividido em três grandes partes: apresentação do problema,
+explanação da estratégia para implementação da solução e resultados e conclusões.
+
+A apresentação do problema é feita a três tempos. Primeiro, na introdução,
+tenta-se contextualizar o leitor e apresentar de forma simples o problema. No
+capítulo \ref{_Ref177384068}\ref{_Ref177384090} é dado a conhecer o estado da
+arte, a maneira como outros tentaram resolver este mesmo problema e quais os
+resultados a que chegaram. De todos os artigos relevantes, são destacados aqueles
+que documentam métodos ou aferições de forma concreta.
+
+A explanação da estratégia e implementação da solução consistem em duas partes.
+No quarto capítulo será exposta a arquitectura da solução na sua totalidade. A
+análise é dividida na sua componente física e lógica. No quinto capítulo, é
+explicado o percurso da implementação da solução, os percalços encontrados e
+respectivas resoluções.
+
+No sexto capítulo, serão descritos os frutos do trabalho desenvolvido e
+perspectivas futuras. No sétimo capítulo, são apresentadas e discutidas as
+conclusões finais.
+
+%$\ll$3 ou 5 páginas sugeridas
+%\vspace*{\baselineskip}
+%%O presente documento, na sua forma actual, pretende ser um modelo
+%orientador para a escrita do relatório final do estágio curricular da
+%LEIC, em termos de formato e de conteúdo.
+%Entende-se no entanto que a estrutura possa, em casos particulares,
+%ser alterada de forma a relatar melhor o trabalho efectuado, devendo
+%os estagiários acordar com os seus orientadores a estrutura mais
+%adequada. 
+%No Anexo A, incluem­se algumas normas a seguir na elaboração do
+%relatório final.
+%%O corpo principal do relatório e os anexos não devem exceder os
+%limites que constam no Anexo A deste documento. 
+%Os anexos podem incluir textos que, embora sejam directamente
+%relacionados com o trabalho, possam ser considerados como sendo
+%pormenores dispensáveis numa leitura menos profunda.
+%%Documentos ou protótipos desenvolvidos pelo autor devem sempre ser
+%incluídos nos anexos, no mesmo volume do relatório ou em documento
+%separado. 
+%Documentos importantes produzidos ou utilizados durante o estágio que,
+%pela sua dimensão, não sejam colocáveis no corpo principal do
+%relatório, podem também ser incluídos em anexos ou, simplesmente,
+%apresentados como referências.
+%%Nesta secção, ``Introdução'', deve descrever-se todo o contexto do
+%estágio, apresentados o tema e conclusões do estágio (com mais algum
+%detalhe do que no resumo) e referida a organização do relatório. 
+%Deve ser apresentada a instituição de estágio em que decorreu o
+%estágio (tal apresentação é necessária, nesta secção ou em outra
+%secção introdutória), o projecto e o problema concreto que o estágio
+%abordou.
+%%Por exemplo, podem ser consideradas as secções apresentadas de
+%seguida.
+%%
+%\section{Apresentação da Instituição de Estágio xpto}\label{sec:xpto}
+%\section{O Projecto Ptox na Instituição de Estágio xpto}
+%\section{Estudo e Desenvolvimento do Protótipo Toxp no Projecto Ptox}
+%\section{Organização e Temas Abordados no Presente Relatório}
+%%
+%\vspace*{\baselineskip}
+%\noindent$\gg$

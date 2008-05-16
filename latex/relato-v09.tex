@@ -14,21 +14,37 @@
 \usepackage{picinpar}              % insert pictures into paragraphs.
 \usepackage{makeidx}               % index
 \usepackage{url}                   % URLs
-%\usepackage[pagebackref]{hyperref} %hyper-refs and back refs
-%\usepackage{indentfirst}           % indent first paragraph
+\usepackage[pagebackref]{hyperref} %hyper-refs and back refs
+\usepackage{indentfirst}           % indent first paragraph
+\usepackage{setspace}
+\usepackage{vmargin}
+\usepackage{color}
+\usepackage{fancyhdr}
+
+
+%macros
+\newcommand{\leic}{Licenciatura em Engenharia Informática e Computação}
+\newcommand{\feup}{Faculdade de Engenharia da Universidade do Porto}
+%%BEGIN Koch
+\newcommand{\foreign}[1]{\textit{#1}}
+\newcommand{\nname}[1]{\textit{#1}}
+%%
+\newcommand{\empresa}{\textit{Novabase / Octal 2 Mobile}}
+\newcommand{\projecto}{Framework de Localização Passiva por Bluetooth}
+%%END   Koch
+
+\hypersetup{pdftitle={\projecto},pdfsubject={Relatório do Estágio Curricular da LEIC 2006/07},pdfkeywords={},pdfauthor={Paulo Jorge Duarte Köch},pdfcreator={wordml2latex }, colorlinks=true, linkcolor=red, anchorcolor=black, citecolor=green, filecolor=magenta, menucolor=red, pagecolor=red, urlcolor=blue, breaklinks=true, pdfstartview=FitH, pdfpagemode=UseOutlines}
+
 
 %% margins
-\usepackage{vmargin}
 \setpapersize{A4}
 %\setmargins{leftmargin}{topmargin}{rightmargin}{bottommargin}{headheight}{headsep}{footheight}{footskip}
 \setmarginsrb{30mm}{20mm}{30mm}{20mm}{5mm}{10mm}{5mm}{10mm}
 
 %%line spacing
-\usepackage{setspace}
 \setstretch{1.2}           % Sets spacing different from the default 1 1/2
 
 %% headers & footers
-\usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}               % clear all fields
 \fancyhead[LO]{LEIC/2005-06/Relatório de Estágio} % one sided
@@ -41,10 +57,7 @@
 \setcounter{topnumber}{1}  % maximum number of floats at top of page
 \setcounter{tocdepth}{2}   % sets the depth of sectional units listed in the toc
 
-%macros
-\newcommand{\leic}{Licenciatura em Engenharia Informática e Computação}
-\newcommand{\feup}{Faculdade de Engenharia da Universidade do Porto}
-%
+
 \includeonly{%
 dedica,%
 resumo,%
@@ -56,6 +69,7 @@ chapter4,%
 chapter5,%
 chapter6,%
 chapter7,%
+chapter8,%
 anexo1,%
 anexo2,%
 %anexo3
@@ -67,20 +81,20 @@ anexo2,%
 
 %%-- first page
 \begin{titlepage}
-\begin{center}
-\vspace*{-14mm}
-{\Large Faculdade de Engenharia da Universidade do Porto}\\[2mm]
-{\Large Licenciatura em Engenharia Informática e Computação}\\[18mm]
-\includegraphics[width=56mm]{feup-logo.png}\\[20mm]
-{\Large\bf $\ll$Título do Relatório do Estágio Curricular$\gg$ na\\
- $\ll$instituição onde decorreu o estágio$\gg$}\\[6mm]
-{\large\bf Relatório do Estágio Curricular da LEIC $\ll$Ano Lectivo$\gg$}\\[40mm]
-{\Large $\ll$Nome do Autor$\gg$}\\[30mm]
-Orientador na FEUP: Prof.\ $\ll$Nome do orientador$\gg$\\
-Orientador na $\ll$Instituição$\gg$: Eng.\ $\ll$Nome do orientador$\gg$\\
-\vfill %Go to the bottom of the page
-$\ll$Mês$\gg$ de $\ll$Ano$\gg$
-\end{center}
+	\begin{center}
+		\vspace*{-14mm}
+		{\Large \feup}\\[2mm]
+		{\Large \leic}\\[18mm]
+		\includegraphics[width=56mm]{feup-logo.png}\\[20mm]
+		{\Large\bf \projecto ~na\\
+		 \empresa}\\[6mm]
+		{\large\bf Relatório do Estágio Curricular da LEIC 2006/07}\\[40mm]
+		{\Large Paulo Jorge Duarte Köch}\\[30mm]
+		Orientador na FEUP: Prof.\ Prof. João Correia Lopes\\
+		Orientador na \empresa: Eng.\ Eng. João Vasco Ranito\\
+		\vfill %Go to the bottom of the page
+		Setembro de 2007
+	\end{center}
 \end{titlepage}
 
 \cleardoublepage       % an empty page                 
@@ -89,12 +103,12 @@ $\ll$Mês$\gg$ de $\ll$Ano$\gg$
 
 %%-- PREAMBLE (single-spaced)
 \begin{singlespace}            
-\include{dedica}
-\include{resumo}
-\include{agradece}
-\tableofcontents
-\listoffigures
-\listoftables
+	\include{dedica}
+	\include{resumo}
+	\include{agradece}
+	\tableofcontents
+	\listoffigures
+	\listoftables
 \end{singlespace}
 
 \cleardoublepage                     
@@ -109,6 +123,7 @@ $\ll$Mês$\gg$ de $\ll$Ano$\gg$
 \include{chapter5}
 \include{chapter6}
 \include{chapter7}
+\include{chapter8}
 
 %%-- FINALE (single-spaced)
 \begin{singlespace}
